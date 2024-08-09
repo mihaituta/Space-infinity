@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2ah4kfid5gf"]
+
+[ext_resource type="Script" path="res://menus/menu.gd" id="1_i011s"]
+[ext_resource type="PackedScene" uid="uid://b1id44d5xjokf" path="res://effects/space_background.tscn" id="1_qd8pl"]
+[ext_resource type="LabelSettings" uid="uid://d1b4x7pmcatsq" path="res://fonts/title_label_settings.tres" id="2_o5bhd"]
+[ext_resource type="LabelSettings" uid="uid://bvs1qb1iupf3c" path="res://fonts/default_label_settings.tres" id="3_xsu46"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i011s")
+
+[node name="SpaceBackground" parent="." instance=ExtResource("1_qd8pl")]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Space Infinity"
+label_settings = ExtResource("2_o5bhd")
+horizontal_alignment = 1
+
+[node name="StartLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press 'space' to play"
+label_settings = ExtResource("3_xsu46")
+horizontal_alignment = 1

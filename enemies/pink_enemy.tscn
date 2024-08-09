@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://fcgyuujissnh"]
+
+[ext_resource type="PackedScene" uid="uid://boalwrc8uak3" path="res://enemies/enemy.tscn" id="1_ry313"]
+[ext_resource type="Texture2D" uid="uid://tlg3x5kqqkp3" path="res://assets/pink_enemy.png" id="2_ekmwg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf5hi"]
+atlas = ExtResource("2_ekmwg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1ln7"]
+atlas = ExtResource("2_ekmwg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4lgv"]
+atlas = ExtResource("2_ekmwg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhdbl"]
+atlas = ExtResource("2_ekmwg")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvmnv"]
+atlas = ExtResource("2_ekmwg")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4wa1h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf5hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1ln7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4lgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhdbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvmnv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="pink_enemy" instance=ExtResource("1_ry313")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_4wa1h")
+autoplay = "default"
+frame_progress = 0.147511
+
+[node name="MoveComponent" parent="." index="2"]
+velocity = Vector2(0, 10)
