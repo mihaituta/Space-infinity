@@ -6,6 +6,8 @@ extends Node2D;
 @onready var score_label: Label = $ScoreLabel
 
 func _ready() -> void:
+	randomize(); #gives new seed so that things are not always generated the same
+	
 	update_score_label(game_stats.score);
 	game_stats.score_changed.connect(update_score_label);
 	

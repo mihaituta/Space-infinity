@@ -1,7 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://fcgyuujissnh"]
+[gd_scene load_steps=16 format=3 uid="uid://fcgyuujissnh"]
 
 [ext_resource type="PackedScene" uid="uid://boalwrc8uak3" path="res://enemies/enemy.tscn" id="1_ry313"]
 [ext_resource type="Texture2D" uid="uid://tlg3x5kqqkp3" path="res://assets/pink_enemy.png" id="2_ekmwg"]
+[ext_resource type="Script" path="res://enemies/pink_enemy.gd" id="2_snxt2"]
+[ext_resource type="Script" path="res://components/state_component.gd" id="3_sj450"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="4_2wrwq"]
+[ext_resource type="Script" path="res://components/border_bounce_component.gd" id="5_546is"]
+[ext_resource type="Script" path="res://components/timed_state_componoent.gd" id="6_cidex"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lf5hi"]
 atlas = ExtResource("2_ekmwg")
@@ -43,15 +48,73 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.0
+"speed": 8.0
 }]
 
-[node name="pink_enemy" instance=ExtResource("1_ry313")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_mcqd7"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cjbo1"]
+radius = 6.0
+
+[node name="PinkEnemy" instance=ExtResource("1_ry313")]
+script = ExtResource("2_snxt2")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_4wa1h")
 autoplay = "default"
-frame_progress = 0.147511
+
+[node name="StatsComponent" parent="." index="1"]
+health = 6
 
 [node name="MoveComponent" parent="." index="2"]
 velocity = Vector2(0, 10)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+position = Vector2(0, -0.5)
+scale = Vector2(0.6, 0.55)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("CircleShape2D_mcqd7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("CircleShape2D_cjbo1")
+
+[node name="ScoreComponent" parent="." index="12"]
+adjust_amount = 20
+
+[node name="States" type="Node" parent="." index="13"]
+
+[node name="MoveDownState" type="Node" parent="States" index="0"]
+unique_name_in_owner = true
+script = ExtResource("6_cidex")
+duration = 2.0
+
+[node name="MoveComponent" type="Node" parent="States/MoveDownState" index="0" node_paths=PackedStringArray("actor")]
+script = ExtResource("4_2wrwq")
+actor = NodePath("../../..")
+velocity = Vector2(0, 15)
+
+[node name="MoveSideState" type="Node" parent="States" index="1"]
+unique_name_in_owner = true
+script = ExtResource("6_cidex")
+duration = 3.0
+
+[node name="MoveSideComponent" type="Node" parent="States/MoveSideState" index="0" node_paths=PackedStringArray("actor")]
+unique_name_in_owner = true
+script = ExtResource("4_2wrwq")
+actor = NodePath("../../..")
+velocity = Vector2(20, 0)
+
+[node name="BorderBounceComponent" type="Node" parent="States/MoveSideState" index="1" node_paths=PackedStringArray("actor", "move_component")]
+script = ExtResource("5_546is")
+actor = NodePath("../../..")
+move_component = NodePath("../MoveSideComponent")
+
+[node name="FireState" type="Node" parent="States" index="2"]
+script = ExtResource("3_sj450")
+
+[node name="PauseState" type="Node" parent="States" index="3"]
+unique_name_in_owner = true
+script = ExtResource("6_cidex")
+duration = 3.0
