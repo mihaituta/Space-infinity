@@ -1,69 +1,99 @@
-[gd_scene load_steps=18 format=3 uid="uid://fcgyuujissnh"]
+[gd_scene load_steps=21 format=3 uid="uid://fcgyuujissnh"]
 
 [ext_resource type="PackedScene" uid="uid://boalwrc8uak3" path="res://enemies/enemy.tscn" id="1_ry313"]
-[ext_resource type="Texture2D" uid="uid://tlg3x5kqqkp3" path="res://assets/pink_enemy.png" id="2_ekmwg"]
 [ext_resource type="Script" path="res://enemies/pink_enemy.gd" id="2_snxt2"]
+[ext_resource type="Texture2D" uid="uid://bhvbtxudpj8us" path="res://assets/EnemyFleet_1/Kla'ed/Weapons/PNGs/Kla'ed - Fighter - Weapons.png" id="3_d36i0"]
 [ext_resource type="Script" path="res://components/state_component.gd" id="3_sj450"]
 [ext_resource type="Script" path="res://components/move_component.gd" id="4_2wrwq"]
+[ext_resource type="Texture2D" uid="uid://l6xl8d1gx51x" path="res://assets/EnemyFleet_1/Kla'ed/Base/PNGs/Kla'ed - Fighter - Base.png" id="4_j3qdp"]
 [ext_resource type="Script" path="res://components/border_bounce_component.gd" id="5_546is"]
 [ext_resource type="Script" path="res://components/timed_state_componoent.gd" id="6_cidex"]
 [ext_resource type="Script" path="res://components/spawner_component.gd" id="8_7j3mj"]
 [ext_resource type="PackedScene" uid="uid://f7gtr7hmcand" path="res://enemies/pink_enemy_projectile.tscn" id="9_dkfx7"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lf5hi"]
-atlas = ExtResource("2_ekmwg")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4rl6"]
+atlas = ExtResource("3_d36i0")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r1ln7"]
-atlas = ExtResource("2_ekmwg")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1um7"]
+atlas = ExtResource("4_j3qdp")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i4lgv"]
-atlas = ExtResource("2_ekmwg")
-region = Rect2(32, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqefd"]
+atlas = ExtResource("3_d36i0")
+region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dhdbl"]
-atlas = ExtResource("2_ekmwg")
-region = Rect2(48, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxqrg"]
+atlas = ExtResource("3_d36i0")
+region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nvmnv"]
-atlas = ExtResource("2_ekmwg")
-region = Rect2(64, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymmgl"]
+atlas = ExtResource("3_d36i0")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kukwg"]
+atlas = ExtResource("3_d36i0")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6goi"]
+atlas = ExtResource("3_d36i0")
+region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4wa1h"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lf5hi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r1ln7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i4lgv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dhdbl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nvmnv")
+"texture": SubResource("AtlasTexture_q4rl6")
 }],
 "loop": true,
 "name": &"default",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1um7")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4rl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqefd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxqrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymmgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kukwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6goi")
+}],
+"loop": true,
+"name": &"fire_rockets",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mcqd7"]
-radius = 7.0
+radius = 11.0454
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cjbo1"]
-radius = 6.0
+radius = 9.0
 
 [node name="PinkEnemy" instance=ExtResource("1_ry313")]
 script = ExtResource("2_snxt2")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_4wa1h")
+animation = &"fire_rockets"
 autoplay = "default"
 
 [node name="StatsComponent" parent="." index="1"]
@@ -73,13 +103,16 @@ health = 6
 velocity = Vector2(0, 10)
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="4"]
-position = Vector2(0, -0.5)
-scale = Vector2(0.6, 0.55)
+visible = false
+position = Vector2(9.53674e-07, 1)
+scale = Vector2(1.1, 1.1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+visible = false
 shape = SubResource("CircleShape2D_mcqd7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+visible = false
 shape = SubResource("CircleShape2D_cjbo1")
 
 [node name="ScoreComponent" parent="." index="12"]
@@ -126,3 +159,9 @@ scene = ExtResource("9_dkfx7")
 unique_name_in_owner = true
 script = ExtResource("6_cidex")
 duration = 3.0
+
+[node name="LeftMuzzle" type="Marker2D" parent="." index="15"]
+position = Vector2(6, -5)
+
+[node name="RightMuzzle" type="Marker2D" parent="." index="16"]
+position = Vector2(-6, -5)

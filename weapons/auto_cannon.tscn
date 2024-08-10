@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://4fna7d2a2mkw"]
+
+[ext_resource type="PackedScene" uid="uid://jgitvl5rx337" path="res://weapons/weapon_system.tscn" id="1_uhe7q"]
+[ext_resource type="Texture2D" uid="uid://dvs5x3bjwx4yg" path="res://assets/MainShip/Main Ship/Main Ship - Weapons/PNGs/Main Ship - Weapons - Auto Cannon.png" id="2_luajm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sg04x"]
+atlas = ExtResource("2_luajm")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pg7ah"]
+atlas = ExtResource("2_luajm")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd18s"]
+atlas = ExtResource("2_luajm")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2pd1"]
+atlas = ExtResource("2_luajm")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hc8p3"]
+atlas = ExtResource("2_luajm")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjsjw"]
+atlas = ExtResource("2_luajm")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugjy1"]
+atlas = ExtResource("2_luajm")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ce1ti"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sg04x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pg7ah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vd18s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2pd1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hc8p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjsjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugjy1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="AutoCannon" instance=ExtResource("1_uhe7q")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_ce1ti")
+autoplay = "default"
+frame = 4
+frame_progress = 0.112589

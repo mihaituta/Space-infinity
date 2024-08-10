@@ -1,46 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://f7gtr7hmcand"]
+[gd_scene load_steps=10 format=3 uid="uid://f7gtr7hmcand"]
 
-[ext_resource type="Texture2D" uid="uid://d25kc2dmtkgpp" path="res://assets/pink_enemy_projectile.png" id="1_3ho64"]
 [ext_resource type="Script" path="res://enemies/pink_enemy_projectile.gd" id="1_wclqv"]
 [ext_resource type="Script" path="res://components/hitbox_component.gd" id="2_2n2ag"]
 [ext_resource type="Script" path="res://components/move_component.gd" id="3_ju444"]
 [ext_resource type="Script" path="res://components/scale_component.gd" id="4_auu0r"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7a7m2"]
-atlas = ExtResource("1_3ho64")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3eoev"]
-atlas = ExtResource("1_3ho64")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_21rnu"]
-atlas = ExtResource("1_3ho64")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nr1r4"]
-atlas = ExtResource("1_3ho64")
-region = Rect2(48, 0, 16, 16)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_5v4wh"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7a7m2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3eoev")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_21rnu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nr1r4")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v8t6q"]
 radius = 4.0

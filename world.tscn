@@ -12,15 +12,16 @@ script = ExtResource("1_romf4")
 game_stats = ExtResource("2_cqqct")
 
 [node name="Ship" parent="." instance=ExtResource("1_12sv3")]
-position = Vector2(80, 216)
+position = Vector2(240, 240)
 
 [node name="SpaceBackground" parent="." instance=ExtResource("2_0vli1")]
 
 [node name="EnemyGenerator" parent="." instance=ExtResource("3_s5d5x")]
 
 [node name="ScoreLabel" type="Label" parent="."]
-offset_right = 160.0
-offset_bottom = 23.0
+offset_right = 480.0
+offset_bottom = 24.0
+size_flags_horizontal = 4
 text = "Score"
 label_settings = ExtResource("6_d6vre")
 horizontal_alignment = 1

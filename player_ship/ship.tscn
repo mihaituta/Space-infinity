@@ -1,12 +1,18 @@
-[gd_scene load_steps=29 format=3 uid="uid://oqw6cdjy2ban"]
+[gd_scene load_steps=44 format=3 uid="uid://oqw6cdjy2ban"]
 
 [ext_resource type="Texture2D" uid="uid://co04busdnskc1" path="res://assets/ship.png" id="1_0utke"]
 [ext_resource type="Script" path="res://player_ship/ship.gd" id="1_yu8h1"]
 [ext_resource type="Script" path="res://components/move_component.gd" id="2_h6u4s"]
+[ext_resource type="Texture2D" uid="uid://cmpexqilnrgix" path="res://assets/MainShip/Main Ship/Main Ship - Engines/PNGs/Main Ship - Engines - Base Engine.png" id="2_ijqq5"]
+[ext_resource type="Texture2D" uid="uid://cgkvl4owci81t" path="res://assets/MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="3_0otc4"]
 [ext_resource type="Script" path="res://components/move_input_component.gd" id="3_3n77m"]
 [ext_resource type="Resource" uid="uid://bln0lt65atacm" path="res://player_ship/ship_move_stats.tres" id="4_8vnbr"]
 [ext_resource type="Script" path="res://components/position_clamp_component.gd" id="5_1eykt"]
+[ext_resource type="Texture2D" uid="uid://dtdmr6fvd4qpg" path="res://assets/MainShip/Main Ship/Main Ship - Weapons/PNGs/Main Ship - Weapons - Big Space Gun.png" id="6_8w0x4"]
+[ext_resource type="Texture2D" uid="uid://dx0mw4ofy4838" path="res://assets/MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Base Engine - Powering.png" id="6_upsw6"]
 [ext_resource type="Script" path="res://components/spawner_component.gd" id="7_cnr6l"]
+[ext_resource type="Texture2D" uid="uid://fwaw24ur756i" path="res://assets/MainShip/Main Ship/Main Ship - Weapons/PNGs/Main Ship - Weapons - Rockets.png" id="7_ochif"]
+[ext_resource type="Texture2D" uid="uid://dvs5x3bjwx4yg" path="res://assets/MainShip/Main Ship/Main Ship - Weapons/PNGs/Main Ship - Weapons - Auto Cannon.png" id="7_vqejd"]
 [ext_resource type="PackedScene" uid="uid://doyo0dvfm4k77" path="res://projectiles/laser.tscn" id="8_y20hq"]
 [ext_resource type="Script" path="res://components/scale_component.gd" id="9_nwhoq"]
 [ext_resource type="Texture2D" uid="uid://ovlvavgekdht" path="res://assets/ship_flame.png" id="10_wcxk5"]
@@ -15,47 +21,10 @@
 [ext_resource type="Script" path="res://components/hurt_component.gd" id="13_1fn7s"]
 [ext_resource type="PackedScene" uid="uid://btehstvuv0v17" path="res://effects/explosion_effect.tscn" id="14_geikq"]
 [ext_resource type="Script" path="res://components/destroyed_component.gd" id="14_thgou"]
+[ext_resource type="PackedScene" uid="uid://mnsclqeofvr2" path="res://weapons/big_cannon_projectile.tscn" id="16_1i8pd"]
 [ext_resource type="AudioStream" uid="uid://cp2ppdcep7odg" path="res://sounds/laser_sound.wav" id="16_bkl7b"]
 [ext_resource type="Script" path="res://components/variable_pitch_audio_stream_player.gd" id="16_g3v0m"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o1eis"]
-atlas = ExtResource("1_0utke")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lcsro"]
-atlas = ExtResource("1_0utke")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2b6ye"]
-atlas = ExtResource("1_0utke")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_gsxlh"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o1eis")
-}],
-"loop": true,
-"name": &"bank_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lcsro")
-}],
-"loop": true,
-"name": &"bank_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2b6ye")
-}],
-"loop": true,
-"name": &"center",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://cfoc825g74psc" path="res://weapons/rocket.tscn" id="22_rrlyd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_me4r8"]
 atlas = ExtResource("10_wcxk5")
@@ -73,13 +42,21 @@ region = Rect2(32, 0, 16, 8)
 atlas = ExtResource("10_wcxk5")
 region = Rect2(32, 16, 16, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_35i3n"]
-atlas = ExtResource("10_wcxk5")
-region = Rect2(16, 0, 16, 8)
+[sub_resource type="AtlasTexture" id="AtlasTexture_curak"]
+atlas = ExtResource("6_upsw6")
+region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rp78n"]
-atlas = ExtResource("10_wcxk5")
-region = Rect2(16, 16, 16, 8)
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kv4r"]
+atlas = ExtResource("6_upsw6")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a012c"]
+atlas = ExtResource("6_upsw6")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjg7a"]
+atlas = ExtResource("6_upsw6")
+region = Rect2(144, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0uwv0"]
 animations = [{
@@ -107,15 +84,447 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_35i3n")
+"texture": SubResource("AtlasTexture_curak")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rp78n")
+"texture": SubResource("AtlasTexture_0kv4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a012c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjg7a")
 }],
 "loop": true,
 "name": &"center",
-"speed": 10.0
+"speed": 20.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1eis"]
+atlas = ExtResource("1_0utke")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcsro"]
+atlas = ExtResource("1_0utke")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onx7i"]
+atlas = ExtResource("3_0otc4")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gsxlh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1eis")
+}],
+"loop": true,
+"name": &"bank_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcsro")
+}],
+"loop": true,
+"name": &"bank_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onx7i")
+}],
+"loop": true,
+"name": &"center",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_mtxr6"]
+resource_name = "fire_rockets"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/Rockets:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"fire_rocket"
+}, {
+"args": [1],
+"method": &"fire_rocket"
+}, {
+"args": [2],
+"method": &"fire_rocket"
+}, {
+"args": [3],
+"method": &"fire_rocket"
+}, {
+"args": [4],
+"method": &"fire_rocket"
+}, {
+"args": [5],
+"method": &"fire_rocket"
+}, {
+"args": [],
+"method": &"start_fire_autocannons_animation"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Anchor/Rockets:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Anchor/AutoCanons:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Anchor/BigCannon:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Anchor/Laser:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_khgo5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/Rockets:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Anchor/AutoCanons:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Anchor/Rockets:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Anchor/AutoCanons:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Anchor/BigCannon:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Anchor/BigCannon:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Anchor/Laser:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_w7dd6"]
+resource_name = "fire_autocannons"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/AutoCanons:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Anchor/AutoCanons:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0],
+"method": &"fire_autocannons"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Anchor/Rockets:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Anchor/BigCannon:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Anchor/Laser:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0orwf"]
+resource_name = "fire_big_cannon"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/BigCannon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Anchor/BigCannon:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Anchor/Rockets:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Anchor/AutoCanons:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Anchor/Laser:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.7, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"fire_big_cannon"
+}, {
+"args": [],
+"method": &"start_fire_autocannons_animation"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f85ny"]
+_data = {
+"RESET": SubResource("Animation_khgo5"),
+"fire_autocannons": SubResource("Animation_w7dd6"),
+"fire_big_cannon": SubResource("Animation_0orwf"),
+"fire_rockets": SubResource("Animation_mtxr6")
+}
 
 [node name="Ship" type="Node2D"]
 script = ExtResource("1_yu8h1")
@@ -123,16 +532,44 @@ script = ExtResource("1_yu8h1")
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2(0, 16)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Anchor"]
-position = Vector2(0, -16)
-sprite_frames = SubResource("SpriteFrames_gsxlh")
-animation = &"center"
+[node name="Rockets" type="Sprite2D" parent="Anchor"]
+visible = false
+position = Vector2(0, -15)
+texture = ExtResource("7_ochif")
+hframes = 17
+
+[node name="AutoCanons" type="Sprite2D" parent="Anchor"]
+visible = false
+position = Vector2(0, -14)
+texture = ExtResource("7_vqejd")
+hframes = 7
+
+[node name="BigCannon" type="Sprite2D" parent="Anchor"]
+visible = false
+position = Vector2(0, -18)
+texture = ExtResource("6_8w0x4")
+hframes = 12
+
+[node name="Laser" type="Sprite2D" parent="Anchor"]
+visible = false
 
 [node name="FlameAnimatedSprite2D" type="AnimatedSprite2D" parent="Anchor"]
-position = Vector2(0, -4)
+position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_0uwv0")
 animation = &"center"
 autoplay = "center"
+frame = 1
+frame_progress = 0.61257
+
+[node name="EngineSprite2D" type="Sprite2D" parent="Anchor"]
+position = Vector2(0, -15)
+texture = ExtResource("2_ijqq5")
+
+[node name="ShipSprite2D" type="AnimatedSprite2D" parent="Anchor"]
+position = Vector2(0, -15)
+sprite_frames = SubResource("SpriteFrames_gsxlh")
+animation = &"center"
+metadata/_edit_lock_ = true
 
 [node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("2_h6u4s")
@@ -147,23 +584,30 @@ move_component = NodePath("../MoveComponent")
 script = ExtResource("5_1eykt")
 actor = NodePath("..")
 
-[node name="LeftMuzzle" type="Marker2D" parent="."]
-position = Vector2(-5, -4)
+[node name="BigCannonSpawner" type="Node2D" parent="."]
+script = ExtResource("7_cnr6l")
+scene = ExtResource("16_1i8pd")
 
-[node name="RightMuzzle" type="Marker2D" parent="."]
-position = Vector2(5, -4)
+[node name="RocketsSpawner" type="Node2D" parent="."]
+script = ExtResource("7_cnr6l")
+scene = ExtResource("22_rrlyd")
 
-[node name="SpawnerComponent" type="Node2D" parent="."]
+[node name="CannonsSpawner" type="Node2D" parent="."]
 script = ExtResource("7_cnr6l")
 scene = ExtResource("8_y20hq")
 
-[node name="FireRateTimer" type="Timer" parent="."]
-wait_time = 0.4
+[node name="AutoCannonsFireRateTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="RocketFireRateTimer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("9_nwhoq")
 sprite = NodePath("../Anchor")
+scale_amount = Vector2(1.1, 1.1)
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("11_r8obg")
@@ -173,7 +617,8 @@ collision_mask = 0
 script = ExtResource("12_d6ev4")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent"]
-polygon = PackedVector2Array(-8, 2, -1, -7, 1, -7, 8, 2, 8, 4, 5, 4, 5, 7, -5, 7, -5, 4, -8, 4)
+visible = false
+polygon = PackedVector2Array(-7, -3, -2, -13, 2, -13, 7, -3, 15, 5, 15, 11, 9, 14, -9, 14, -12.2709, 12.3646, -15, 11, -15, 5)
 
 [node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
 script = ExtResource("13_1fn7s")
@@ -181,6 +626,7 @@ stats_component = NodePath("../StatsComponent")
 hurtbox_component = NodePath("../HurtboxComponent")
 
 [node name="ExplosionSpawnerComponent" type="Node2D" parent="."]
+visible = false
 script = ExtResource("7_cnr6l")
 scene = ExtResource("14_geikq")
 
@@ -196,4 +642,46 @@ volume_db = -5.0
 bus = &"Sounds"
 script = ExtResource("16_g3v0m")
 
-[connection signal="timeout" from="FireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
+[node name="CannonsMarkers" type="Node2D" parent="."]
+visible = false
+
+[node name="LeftMuzzle" type="Marker2D" parent="CannonsMarkers"]
+position = Vector2(-9, -16)
+
+[node name="RightMuzzle" type="Marker2D" parent="CannonsMarkers"]
+position = Vector2(9, -16)
+
+[node name="RocketsMarkers" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+
+[node name="Rocket1" type="Marker2D" parent="RocketsMarkers"]
+position = Vector2(-7, -20)
+
+[node name="Rocket2" type="Marker2D" parent="RocketsMarkers"]
+position = Vector2(7, -20)
+
+[node name="Rocket3" type="Marker2D" parent="RocketsMarkers"]
+position = Vector2(-11, -16)
+
+[node name="Rocket4" type="Marker2D" parent="RocketsMarkers"]
+position = Vector2(11, -16)
+
+[node name="Rocket5" type="Marker2D" parent="RocketsMarkers"]
+position = Vector2(-15, -12)
+
+[node name="Rocket6" type="Marker2D" parent="RocketsMarkers"]
+position = Vector2(15, -12)
+
+[node name="BigCannonMarker" type="Marker2D" parent="."]
+visible = false
+position = Vector2(0, -26)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f85ny")
+}
+autoplay = "fire_autocannons"
+
+[connection signal="timeout" from="AutoCannonsFireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="RocketFireRateTimer" to="." method="_on_fire_rate_timer_timeout"]

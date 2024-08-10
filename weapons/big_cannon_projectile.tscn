@@ -1,0 +1,108 @@
+[gd_scene load_steps=15 format=3 uid="uid://mnsclqeofvr2"]
+
+[ext_resource type="PackedScene" uid="uid://c84xddq1o7g2m" path="res://weapons/projectile.tscn" id="1_it6b1"]
+[ext_resource type="Texture2D" uid="uid://bk6w815417jfv" path="res://assets/MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Big Space Gun.png" id="2_g2d2l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_827rs"]
+radius = 15.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qnqs"]
+atlas = ExtResource("2_g2d2l")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukrhj"]
+atlas = ExtResource("2_g2d2l")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueoqs"]
+atlas = ExtResource("2_g2d2l")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkxbp"]
+atlas = ExtResource("2_g2d2l")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb5ht"]
+atlas = ExtResource("2_g2d2l")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq4p7"]
+atlas = ExtResource("2_g2d2l")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ihqo"]
+atlas = ExtResource("2_g2d2l")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fmv6"]
+atlas = ExtResource("2_g2d2l")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjhn7"]
+atlas = ExtResource("2_g2d2l")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjl5b"]
+atlas = ExtResource("2_g2d2l")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1rewm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qnqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukrhj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueoqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkxbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb5ht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq4p7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ihqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fmv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjhn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjl5b")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 10.0
+}]
+
+[node name="BigCannonProjectile" instance=ExtResource("1_it6b1")]
+
+[node name="HitboxComponent" parent="." index="0"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_827rs")
+
+[node name="AnimatedSprite2D" parent="Anchor" index="0"]
+sprite_frames = SubResource("SpriteFrames_1rewm")
+animation = &"fire"
+autoplay = "fire"
+frame_progress = 0.700811
+
+[node name="MoveComponent" parent="." index="2"]
+velocity = Vector2(0, -100)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+position = Vector2(-1.78814e-07, 1.19209e-07)
+scale = Vector2(0.7, 0.7)
