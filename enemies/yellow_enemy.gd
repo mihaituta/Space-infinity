@@ -1,5 +1,5 @@
+class_name YellowEnemy;
 extends Enemy
-
 
 func _ready() -> void:
 	super(); #calls Enemy (parent) class's _ready() function

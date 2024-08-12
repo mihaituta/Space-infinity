@@ -12,9 +12,7 @@ script = ExtResource("1_blpkx")
 [node name="HitboxComponent" type="Area2D" parent="."]
 script = ExtResource("4_mnqm3")
 
-[node name="Anchor" type="Node2D" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Anchor"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
 [node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("1_q0eyu")
@@ -24,8 +22,8 @@ actor = NodePath("..")
 
 [node name="FlashComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("3_xob1f")
-sprite = NodePath("../Anchor/AnimatedSprite2D")
+sprite = NodePath("../AnimatedSprite2D")
 
 [node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("2_x0e1h")
-sprite = NodePath("../Anchor/AnimatedSprite2D")
+sprite = NodePath("../AnimatedSprite2D")

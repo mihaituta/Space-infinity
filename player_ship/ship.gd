@@ -13,14 +13,17 @@ extends Node2D
 @onready var cannons_markers: = $CannonsMarkers
 @onready var big_cannon_spawner: SpawnerComponent = $BigCannonSpawner
 @onready var big_cannon_marker: = $BigCannonMarker;
+@onready var enemy_detector: Area2D = $Node/EnemyDetector
+
+const PLAYER_ROCKET = preload("res://weapons/projectiles/player/rocket/player_rocket.tscn")
+
+var enemy_list = [];
 
 func _ready() -> void:
-	#auto_cannons_fire_rate_timer.timeout.connect(start_fire_autocannons_animation);
 	start_fire_autocannons_animation();
-	#rocket_fire_rate_timer.timeout.connect(start_fire_rockets_animation);
-	#rocket_fire_rate_timer.timeout.connect(start_fire_big_cannon_animation);
-	
+
 func start_fire_autocannons_animation() -> void:
+	animation_player.speed_scale = 1.3;
 	animation_player.play("fire_autocannons");
 
 func fire_autocannons(cannonIndex: int) -> void:
@@ -30,15 +33,34 @@ func fire_autocannons(cannonIndex: int) -> void:
 	
 	scale_component.tween_scale();
 
+func start_autocannnos_turbo() -> void:
+	animation_player.speed_scale = 2.5;
+	await get_tree().create_timer(3).timeout;
+	animation_player.speed_scale = 1;
+
 func start_fire_rockets_animation() -> void:
+	enemy_list.clear()
 	animation_player.play("fire_rockets");
-	#for rocket in rockets_markers.get_children():
-		#rockets_spawner.spawn(rocket.global_position);
-		#await get_tree().create_timer(0.1).timeout;
+	enemy_detector.monitoring = true;
+	await get_tree().create_timer(0.2).timeout;
+	
+func spawnRocket(target, global_spawn_position: Vector2 = global_position, parent: Node = get_tree().current_scene) -> Node:
+	var instance = PLAYER_ROCKET.instantiate()
+	# Add it as a child of the parent
+	parent.add_child(instance)
+	# Update the global position of the instance.
+	# (This must be done after adding it as a child)
+	instance.global_position = global_spawn_position
+	instance._target = target
+	# Return the instance in case we want to perform any other operations
+	# on it after instancing it.
+	return instance
 
 func fire_rocket(muzleIndex: int) -> void:
-	rockets_spawner.spawn(rockets_markers.get_child(muzleIndex).global_position);
-
+	if(enemy_list.size() > 0):
+		spawnRocket(enemy_list[muzleIndex % enemy_list.size()],rockets_markers.get_child(muzleIndex).global_position);
+	#rockets_spawner.spawn(rockets_markers.get_child(muzleIndex).global_position)
+	
 func start_fire_big_cannon_animation() -> void:
 	animation_player.play("fire_big_cannon");
 
@@ -46,24 +68,11 @@ func fire_big_cannon() -> void:
 	big_cannon_spawner.spawn(big_cannon_marker.global_position);
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Key_1"):
-		start_fire_autocannons_animation();
-	elif Input.is_action_just_pressed("Key_2"):
-		start_fire_rockets_animation();
-	elif Input.is_action_just_pressed("Key_3"):
-		start_fire_big_cannon_animation();
-	
 	animate_the_ship();
 	
 func animate_the_ship() -> void:
-	#if (move_component.velocity.x < 0):
-		#animated_sprite_2d.play("bank_left");
-		#flame_animated_sprite_2d.play("bank_left");
-	#elif (move_component.velocity.x > 0):
-		#animated_sprite_2d.play("bank_right");
-		#flame_animated_sprite_2d.play("bank_right");
-	#else:
 		ship_sprite_2d.play("center");
 		flame_animated_sprite_2d.play("center");
 
-
+func _on_enemy_detector_area_entered(area: Area2D) -> void:
+	enemy_list.append(area.get_parent());

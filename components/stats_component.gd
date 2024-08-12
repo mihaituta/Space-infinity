@@ -11,7 +11,7 @@ extends Node
 		health_changed.emit()
 		
 		# Signal out when health is at 0
-		if health == 0: no_health.emit()
+		if health <= 0: no_health.emit()
 
 # Create our signals for health
 signal health_changed() # Emit when the health value has changed

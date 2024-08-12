@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfoc825g74psc"]
+
+[ext_resource type="PackedScene" uid="uid://c84xddq1o7g2m" path="res://weapons/projectile.tscn" id="1_guxym"]
+[ext_resource type="Script" path="res://weapons/projectiles/player/rocket/player_rocket.gd" id="2_8ecox"]
+[ext_resource type="Texture2D" uid="uid://bqb7ajq4m84fy" path="res://assets/MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Rocket.png" id="3_5ac5u"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="4_nhkav"]
+[ext_resource type="PackedScene" uid="uid://btehstvuv0v17" path="res://effects/explosion_effect.tscn" id="5_656p7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2t0eg"]
+size = Vector2(5, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tugcp"]
+atlas = ExtResource("3_5ac5u")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jphh"]
+atlas = ExtResource("3_5ac5u")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bprx"]
+atlas = ExtResource("3_5ac5u")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_44ucc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tugcp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jphh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bprx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ewt5s"]
+radius = 256.0
+
+[node name="PlayerRocket" instance=ExtResource("1_guxym")]
+script = ExtResource("2_8ecox")
+max_speed = 130
+
+[node name="HitboxComponent" parent="." index="0"]
+collision_layer = 0
+collision_mask = 2
+damage = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_2t0eg")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_44ucc")
+autoplay = "default"
+frame_progress = 0.722559
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+position = Vector2(-0.5, 2)
+scale = Vector2(0.25, 0.8)
+
+[node name="EnemyDetector" type="Area2D" parent="." index="6"]
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector" index="0"]
+shape = SubResource("CircleShape2D_ewt5s")
+debug_color = Color(0.643137, 0.490196, 0.517647, 0.113725)
+
+[node name="RocketTimer" type="Timer" parent="." index="7"]
+wait_time = 3.0
+
+[node name="DestroySpawnerComponent" type="Node2D" parent="." index="8"]
+script = ExtResource("4_nhkav")
+scene = ExtResource("5_656p7")
+
+[connection signal="area_entered" from="EnemyDetector" to="." method="_on_enemy_detector_area_entered"]
+[connection signal="timeout" from="RocketTimer" to="." method="_on_rocket_timer_timeout"]

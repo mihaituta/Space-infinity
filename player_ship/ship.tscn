@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://oqw6cdjy2ban"]
+[gd_scene load_steps=47 format=3 uid="uid://oqw6cdjy2ban"]
 
 [ext_resource type="Texture2D" uid="uid://co04busdnskc1" path="res://assets/ship.png" id="1_0utke"]
 [ext_resource type="Script" path="res://player_ship/ship.gd" id="1_yu8h1"]
@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://components/spawner_component.gd" id="7_cnr6l"]
 [ext_resource type="Texture2D" uid="uid://fwaw24ur756i" path="res://assets/MainShip/Main Ship/Main Ship - Weapons/PNGs/Main Ship - Weapons - Rockets.png" id="7_ochif"]
 [ext_resource type="Texture2D" uid="uid://dvs5x3bjwx4yg" path="res://assets/MainShip/Main Ship/Main Ship - Weapons/PNGs/Main Ship - Weapons - Auto Cannon.png" id="7_vqejd"]
-[ext_resource type="PackedScene" uid="uid://doyo0dvfm4k77" path="res://projectiles/laser.tscn" id="8_y20hq"]
+[ext_resource type="PackedScene" uid="uid://doyo0dvfm4k77" path="res://weapons/projectiles/player/bullet/bullet.tscn" id="8_y20hq"]
 [ext_resource type="Script" path="res://components/scale_component.gd" id="9_nwhoq"]
 [ext_resource type="Texture2D" uid="uid://ovlvavgekdht" path="res://assets/ship_flame.png" id="10_wcxk5"]
 [ext_resource type="Script" path="res://components/stats_component.gd" id="11_r8obg"]
@@ -24,7 +24,9 @@
 [ext_resource type="PackedScene" uid="uid://mnsclqeofvr2" path="res://weapons/big_cannon_projectile.tscn" id="16_1i8pd"]
 [ext_resource type="AudioStream" uid="uid://cp2ppdcep7odg" path="res://sounds/laser_sound.wav" id="16_bkl7b"]
 [ext_resource type="Script" path="res://components/variable_pitch_audio_stream_player.gd" id="16_g3v0m"]
-[ext_resource type="PackedScene" uid="uid://cfoc825g74psc" path="res://weapons/rocket.tscn" id="22_rrlyd"]
+[ext_resource type="PackedScene" uid="uid://cfoc825g74psc" path="res://weapons/projectiles/player/rocket/player_rocket.tscn" id="16_sdbmw"]
+[ext_resource type="Script" path="res://player_ship/SkillBar.gd" id="26_0nvgq"]
+[ext_resource type="PackedScene" uid="uid://c0fw4mi0ordal" path="res://weapons/spells/spell_button.tscn" id="26_vndjb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_me4r8"]
 atlas = ExtResource("10_wcxk5")
@@ -139,114 +141,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_mtxr6"]
-resource_name = "fire_rockets"
-length = 1.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Anchor/Rockets:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"values": [{
-"args": [0],
-"method": &"fire_rocket"
-}, {
-"args": [1],
-"method": &"fire_rocket"
-}, {
-"args": [2],
-"method": &"fire_rocket"
-}, {
-"args": [3],
-"method": &"fire_rocket"
-}, {
-"args": [4],
-"method": &"fire_rocket"
-}, {
-"args": [5],
-"method": &"fire_rocket"
-}, {
-"args": [],
-"method": &"start_fire_autocannons_animation"
-}]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationPlayer:speed_scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Anchor/Rockets:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Anchor/AutoCanons:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Anchor/BigCannon:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Anchor/Laser:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="Animation" id="Animation_khgo5"]
 length = 0.001
 tracks/0/type = "value"
@@ -345,6 +239,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Node/EnemyDetector:monitoring")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_w7dd6"]
 resource_name = "fire_autocannons"
@@ -364,7 +270,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("AnimationPlayer:speed_scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -518,6 +424,140 @@ tracks/5/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_mtxr6"]
+resource_name = "fire_rockets"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/Rockets:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"fire_rocket"
+}, {
+"args": [1],
+"method": &"fire_rocket"
+}, {
+"args": [2],
+"method": &"fire_rocket"
+}, {
+"args": [3],
+"method": &"fire_rocket"
+}, {
+"args": [4],
+"method": &"fire_rocket"
+}, {
+"args": [5],
+"method": &"fire_rocket"
+}, {
+"args": [],
+"method": &"start_fire_autocannons_animation"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Anchor/Rockets:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Anchor/AutoCanons:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Anchor/BigCannon:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Anchor/Laser:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Node/EnemyDetector:monitoring")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_clear_enemy_list"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f85ny"]
 _data = {
 "RESET": SubResource("Animation_khgo5"),
@@ -525,6 +565,9 @@ _data = {
 "fire_big_cannon": SubResource("Animation_0orwf"),
 "fire_rockets": SubResource("Animation_mtxr6")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cfi1m"]
+size = Vector2(480, 168)
 
 [node name="Ship" type="Node2D"]
 script = ExtResource("1_yu8h1")
@@ -590,7 +633,7 @@ scene = ExtResource("16_1i8pd")
 
 [node name="RocketsSpawner" type="Node2D" parent="."]
 script = ExtResource("7_cnr6l")
-scene = ExtResource("22_rrlyd")
+scene = ExtResource("16_sdbmw")
 
 [node name="CannonsSpawner" type="Node2D" parent="."]
 script = ExtResource("7_cnr6l")
@@ -683,5 +726,42 @@ libraries = {
 }
 autoplay = "fire_autocannons"
 
+[node name="Node" type="Node" parent="."]
+
+[node name="EnemyDetector" type="Area2D" parent="Node"]
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/EnemyDetector"]
+shape = SubResource("RectangleShape2D_cfi1m")
+
+[node name="UI" type="CanvasLayer" parent="."]
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+
+[node name="SkillBar" type="HBoxContainer" parent="UI"]
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 222.0
+offset_bottom = 44.0
+script = ExtResource("26_0nvgq")
+
+[node name="SpellButton" parent="UI/SkillBar" instance=ExtResource("26_vndjb")]
+layout_mode = 2
+
+[node name="SpellButton2" parent="UI/SkillBar" instance=ExtResource("26_vndjb")]
+layout_mode = 2
+
+[node name="SpellButton3" parent="UI/SkillBar" instance=ExtResource("26_vndjb")]
+layout_mode = 2
+
+[node name="SpellButton4" parent="UI/SkillBar" instance=ExtResource("26_vndjb")]
+layout_mode = 2
+
+[node name="SpellButton5" parent="UI/SkillBar" instance=ExtResource("26_vndjb")]
+layout_mode = 2
+
 [connection signal="timeout" from="AutoCannonsFireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
 [connection signal="timeout" from="RocketFireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
+[connection signal="area_entered" from="Node/EnemyDetector" to="." method="_on_enemy_detector_area_entered"]

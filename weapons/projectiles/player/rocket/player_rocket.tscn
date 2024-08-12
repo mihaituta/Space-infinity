@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfoc825g74psc"]
+
+[ext_resource type="PackedScene" uid="uid://c84xddq1o7g2m" path="res://weapons/projectile.tscn" id="1_guxym"]
+[ext_resource type="Script" path="res://weapons/projectiles/player/rocket/player_rocket.gd" id="2_8ecox"]
+[ext_resource type="Texture2D" uid="uid://bqb7ajq4m84fy" path="res://assets/MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Rocket.png" id="3_5ac5u"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="4_nhkav"]
+[ext_resource type="PackedScene" uid="uid://btehstvuv0v17" path="res://effects/explosion_effect.tscn" id="5_656p7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2t0eg"]
+size = Vector2(5, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tugcp"]
+atlas = ExtResource("3_5ac5u")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jphh"]
+atlas = ExtResource("3_5ac5u")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bprx"]
+atlas = ExtResource("3_5ac5u")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_44ucc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tugcp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jphh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bprx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f17ch"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 102.247
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+damping_max = 42.0
+scale_min = 0.7
+
+[node name="PlayerRocket" instance=ExtResource("1_guxym")]
+script = ExtResource("2_8ecox")
+max_speed = 220
+
+[node name="HitboxComponent" parent="." index="0"]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+collision_layer = 0
+collision_mask = 2
+damage = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_2t0eg")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_44ucc")
+autoplay = "default"
+frame_progress = 0.619461
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+position = Vector2(-1.5, -0.5)
+rotation = 1.5708
+scale = Vector2(0.275, 0.8)
+
+[node name="RocketTimer" type="Timer" parent="." index="6"]
+wait_time = 2.0
+autostart = true
+
+[node name="DestroySpawnerComponent" type="Node2D" parent="." index="7"]
+script = ExtResource("4_nhkav")
+scene = ExtResource("5_656p7")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="8"]
+modulate = Color(0.934339, 0.927798, 0.930431, 1)
+self_modulate = Color(0.808998, 0.808998, 0.808998, 1)
+position = Vector2(-10, 0)
+rotation = -1.5708
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_f17ch")
+lifetime = 0.3
+explosiveness = 0.4
+
+[connection signal="timeout" from="RocketTimer" to="." method="_on_rocket_timer_timeout"]
