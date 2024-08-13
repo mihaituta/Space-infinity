@@ -1,62 +1,66 @@
-[gd_scene load_steps=9 format=3 uid="uid://cm18kn0j5ljmg"]
+[gd_scene load_steps=10 format=3 uid="uid://1j0bnf3snr6"]
 
 [ext_resource type="PackedScene" uid="uid://boalwrc8uak3" path="res://enemies/enemy.tscn" id="1_n7do1"]
-[ext_resource type="Texture2D" uid="uid://be2irs400hd48" path="res://assets/green_enemy.png" id="2_fb7yo"]
+[ext_resource type="Script" path="res://enemies/green_enemy.gd" id="2_s670h"]
+[ext_resource type="Texture2D" uid="uid://b61k0ifgprcsw" path="res://assets/yellow_enemy.png" id="3_633ct"]
+[ext_resource type="Script" path="res://components/border_bounce_component.gd" id="4_6hl6b"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h8o4v"]
-atlas = ExtResource("2_fb7yo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dd7a"]
+atlas = ExtResource("3_633ct")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qfr12"]
-atlas = ExtResource("2_fb7yo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tig3"]
+atlas = ExtResource("3_633ct")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_evlfd"]
-atlas = ExtResource("2_fb7yo")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_mw43c"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_y862g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h8o4v")
+"texture": SubResource("AtlasTexture_6dd7a")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qfr12")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_evlfd")
+"texture": SubResource("AtlasTexture_5tig3")
 }],
 "loop": true,
-"name": &"move",
-"speed": 6.0
+"name": &"default",
+"speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5sdh8"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mq4t"]
+size = Vector2(16, 10)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mwcr3"]
-radius = 6.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sxbrr"]
+size = Vector2(12, 8)
 
 [node name="GreenEnemy" instance=ExtResource("1_n7do1")]
+script = ExtResource("2_s670h")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
-sprite_frames = SubResource("SpriteFrames_mw43c")
-animation = &"move"
-autoplay = "move"
-frame_progress = 0.45294
+sprite_frames = SubResource("SpriteFrames_y862g")
+autoplay = "default"
+frame_progress = 0.6871
 
 [node name="StatsComponent" parent="." index="1"]
-health = 3
+health = 6
 
 [node name="MoveComponent" parent="." index="2"]
-velocity = Vector2(0, 40)
+velocity = Vector2(0, 20)
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="4"]
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.8, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
-shape = SubResource("CircleShape2D_5sdh8")
+shape = SubResource("RectangleShape2D_4mq4t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
-shape = SubResource("CircleShape2D_mwcr3")
+shape = SubResource("RectangleShape2D_sxbrr")
+debug_color = Color(0.729412, 0.380392, 0.352941, 0.572549)
+
+[node name="ScoreComponent" parent="." index="12"]
+adjust_amount = 10
+
+[node name="BorderBounceComponent" type="Node" parent="." index="13" node_paths=PackedStringArray("actor", "move_component")]
+script = ExtResource("4_6hl6b")
+actor = NodePath("..")
+move_component = NodePath("../MoveComponent")

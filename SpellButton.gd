@@ -31,7 +31,7 @@ func _ready() -> void:
 	cooldown.max_value = timer.wait_time;
 	set_process(false);
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	uses_left_label.text = str(uses_left);
 	time.text = "%3.1f" % timer.time_left;
 	cooldown.value = timer.time_left;

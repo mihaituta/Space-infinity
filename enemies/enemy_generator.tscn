@@ -2,34 +2,33 @@
 
 [ext_resource type="Script" path="res://components/spawner_component.gd" id="1_h3uog"]
 [ext_resource type="Script" path="res://enemies/enemy_generator.gd" id="1_q7qpv"]
-[ext_resource type="PackedScene" uid="uid://cm18kn0j5ljmg" path="res://enemies/green_enemy.tscn" id="2_0tcuy"]
-[ext_resource type="PackedScene" uid="uid://1j0bnf3snr6" path="res://enemies/yellow_enemy.tscn" id="3_anphx"]
-[ext_resource type="PackedScene" uid="uid://fcgyuujissnh" path="res://enemies/pink_enemy.tscn" id="4_1jxwj"]
+[ext_resource type="PackedScene" uid="uid://1j0bnf3snr6" path="res://enemies/green_enemy.tscn" id="2_0tcuy"]
+[ext_resource type="PackedScene" uid="uid://fcgyuujissnh" path="res://enemies/blue_enemy.tscn" id="4_acuma"]
+[ext_resource type="PackedScene" uid="uid://cm18kn0j5ljmg" path="res://enemies/red_enemy.tscn" id="4_t4grn"]
 [ext_resource type="Resource" uid="uid://cpqnwclh4fi5e" path="res://game_stats.tres" id="5_u4pa1"]
 
 [node name="EnemyGenerator" type="Node2D"]
 script = ExtResource("1_q7qpv")
+RedEnemeyScene = ExtResource("4_t4grn")
 GreenEnemeyScene = ExtResource("2_0tcuy")
-YellowEnemeyScene = ExtResource("3_anphx")
-PinkEnemyScene = ExtResource("4_1jxwj")
+BlueEnemyScene = ExtResource("4_acuma")
 game_stats = ExtResource("5_u4pa1")
 
 [node name="SpawnerComponent" type="Node2D" parent="."]
 script = ExtResource("1_h3uog")
 
-[node name="GreenEnemySpawnTimer" type="Timer" parent="."]
+[node name="RedEnemySpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="YellowEnemySpawnTimer" type="Timer" parent="."]
+[node name="GreenEnemySpawnTimer" type="Timer" parent="."]
 process_mode = 4
 wait_time = 4.0
 one_shot = true
 autostart = true
 
-[node name="PinkEnemySpawnTimer" type="Timer" parent="."]
-process_mode = 4
-wait_time = 6.0
+[node name="BlueEnemySpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 autostart = true

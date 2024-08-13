@@ -1,0 +1,227 @@
+[gd_scene load_steps=25 format=3 uid="uid://fcgyuujissnh"]
+
+[ext_resource type="PackedScene" uid="uid://boalwrc8uak3" path="res://enemies/enemy.tscn" id="1_8t0q5"]
+[ext_resource type="Script" path="res://enemies/blue_enemy.gd" id="2_oqqal"]
+[ext_resource type="Texture2D" uid="uid://byyq4r5gnv6pn" path="res://assets/EnemyFleet_3/Nautolan/Engine Effects/PNGs/Nautolan Ship - Scout - Engine Effect.png" id="3_bxm2j"]
+[ext_resource type="Texture2D" uid="uid://dmp3u5ichaoqe" path="res://assets/EnemyFleet_3/Nautolan/Weapons/PNGs/Nautolan Ship - Scout - Weapons.png" id="5_67151"]
+[ext_resource type="Script" path="res://components/timed_state_componoent.gd" id="5_n02g5"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="6_o8ak0"]
+[ext_resource type="Script" path="res://components/border_bounce_component.gd" id="7_ggrrc"]
+[ext_resource type="Script" path="res://components/state_component.gd" id="8_m683e"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="9_1savg"]
+[ext_resource type="PackedScene" uid="uid://iuelvuusx0o0" path="res://weapons/projectiles/enemy/blue_enemy_bullet.tscn" id="10_2wmmi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxw0w"]
+atlas = ExtResource("3_bxm2j")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chvnm"]
+atlas = ExtResource("3_bxm2j")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6thi"]
+atlas = ExtResource("3_bxm2j")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0hp6"]
+atlas = ExtResource("3_bxm2j")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mowv2"]
+atlas = ExtResource("3_bxm2j")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bhin"]
+atlas = ExtResource("3_bxm2j")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dny10"]
+atlas = ExtResource("3_bxm2j")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plqxf"]
+atlas = ExtResource("3_bxm2j")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gdmph"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxw0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chvnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6thi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0hp6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mowv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bhin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dny10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plqxf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mcqd7"]
+radius = 11.0454
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cjbo1"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_nfmrx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wygns"]
+resource_name = "fire_bullet"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire_bullet"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bom57"]
+_data = {
+"RESET": SubResource("Animation_nfmrx"),
+"fire_bullet": SubResource("Animation_wygns")
+}
+
+[node name="BlueEnemy" instance=ExtResource("1_8t0q5")]
+script = ExtResource("2_oqqal")
+
+[node name="Engine" parent="Anchor" index="0"]
+position = Vector2(0, 5)
+rotation = -3.14159
+sprite_frames = SubResource("SpriteFrames_gdmph")
+autoplay = "default"
+frame_progress = 0.519189
+
+[node name="Sprite2D" type="Sprite2D" parent="Anchor" index="1"]
+rotation = 3.14159
+texture = ExtResource("5_67151")
+hframes = 7
+
+[node name="AnimatedSprite2D" parent="Anchor" index="2"]
+visible = false
+
+[node name="StatsComponent" parent="." index="1"]
+health = 6
+
+[node name="MoveComponent" parent="." index="2"]
+velocity = Vector2(0, 10)
+
+[node name="ScaleComponent" parent="." index="3"]
+scale_amount = Vector2(1.2, 1.2)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+visible = false
+position = Vector2(9.53674e-07, 1)
+scale = Vector2(1.1, 1.1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_mcqd7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_cjbo1")
+
+[node name="ScoreComponent" parent="." index="12"]
+adjust_amount = 20
+
+[node name="States" type="Node" parent="." index="13"]
+
+[node name="MoveDownState" type="Node" parent="States" index="0"]
+unique_name_in_owner = true
+script = ExtResource("5_n02g5")
+duration = 2.0
+
+[node name="MoveComponent" type="Node" parent="States/MoveDownState" index="0" node_paths=PackedStringArray("actor")]
+script = ExtResource("6_o8ak0")
+actor = NodePath("../../..")
+velocity = Vector2(0, 15)
+
+[node name="MoveSideState" type="Node" parent="States" index="1"]
+unique_name_in_owner = true
+script = ExtResource("5_n02g5")
+duration = 3.0
+
+[node name="MoveSideComponent" type="Node" parent="States/MoveSideState" index="0" node_paths=PackedStringArray("actor")]
+unique_name_in_owner = true
+script = ExtResource("6_o8ak0")
+actor = NodePath("../../..")
+velocity = Vector2(20, 0)
+
+[node name="BorderBounceComponent" type="Node" parent="States/MoveSideState" index="1" node_paths=PackedStringArray("actor", "move_component")]
+script = ExtResource("7_ggrrc")
+actor = NodePath("../../..")
+move_component = NodePath("../MoveSideComponent")
+
+[node name="FireState" type="Node" parent="States" index="2"]
+unique_name_in_owner = true
+script = ExtResource("8_m683e")
+
+[node name="ProjectileSpawnerComponent" type="Node2D" parent="States/FireState" index="0"]
+unique_name_in_owner = true
+script = ExtResource("9_1savg")
+scene = ExtResource("10_2wmmi")
+
+[node name="PauseState" type="Node" parent="States" index="3"]
+unique_name_in_owner = true
+script = ExtResource("5_n02g5")
+duration = 3.0
+
+[node name="BulletMuzzle" type="Marker2D" parent="." index="15"]
+position = Vector2(0, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="16"]
+libraries = {
+"": SubResource("AnimationLibrary_bom57")
+}
+autoplay = "RESET"

@@ -55,7 +55,7 @@ script = ExtResource("1_ow34c")
 
 [node name="VariablePitchAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_bgijc")
-volume_db = -10.0
+volume_db = -15.0
 bus = &"Sounds"
 script = ExtResource("3_aamy0")
 auto_play_with_variance = true

@@ -1,7 +1,7 @@
 class_name Enemy
 extends Node2D
 
-@onready var animated_sprite_2d: = $AnimatedSprite2D
+@onready var animated_sprite_2d: = $Anchor/AnimatedSprite2D
 @onready var stats_component: = $StatsComponent
 @onready var move_component: = $MoveComponent
 @onready var scale_component: = $ScaleComponent

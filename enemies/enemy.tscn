@@ -20,7 +20,11 @@
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_sdtwb")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Anchor" type="Node2D" parent="."]
+
+[node name="Engine" type="AnimatedSprite2D" parent="Anchor"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Anchor"]
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("2_4byq1")
@@ -31,17 +35,17 @@ actor = NodePath("..")
 
 [node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("4_fq3xs")
-sprite = NodePath("../AnimatedSprite2D")
+sprite = NodePath("../Anchor")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="FlashComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("5_5utj4")
-sprite = NodePath("../AnimatedSprite2D")
+sprite = NodePath("../Anchor")
 
 [node name="ShakeComponent" type="Node" parent="." node_paths=PackedStringArray("node")]
 script = ExtResource("6_lgoxe")
-node = NodePath("../AnimatedSprite2D")
+node = NodePath("../Anchor")
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 collision_layer = 2

@@ -1,0 +1,224 @@
+[gd_scene load_steps=30 format=3 uid="uid://mnsclqeofvr2"]
+
+[ext_resource type="PackedScene" uid="uid://c84xddq1o7g2m" path="res://weapons/projectiles/player/projectile.tscn" id="1_pnjdo"]
+[ext_resource type="Texture2D" uid="uid://bk6w815417jfv" path="res://assets/MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Big Space Gun.png" id="2_5duka"]
+[ext_resource type="Script" path="res://weapons/projectiles/player/big_cannon/big_cannon_projectile.gd" id="2_ksbmi"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="3_8y54c"]
+[ext_resource type="FontFile" uid="uid://q2hl2ajuwf6f" path="res://fonts/kenney_mini_square.ttf" id="4_ovnh1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_827rs"]
+radius = 15.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qnqs"]
+atlas = ExtResource("2_5duka")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukrhj"]
+atlas = ExtResource("2_5duka")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueoqs"]
+atlas = ExtResource("2_5duka")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkxbp"]
+atlas = ExtResource("2_5duka")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb5ht"]
+atlas = ExtResource("2_5duka")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq4p7"]
+atlas = ExtResource("2_5duka")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ihqo"]
+atlas = ExtResource("2_5duka")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fmv6"]
+atlas = ExtResource("2_5duka")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjhn7"]
+atlas = ExtResource("2_5duka")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjl5b"]
+atlas = ExtResource("2_5duka")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1rewm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qnqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukrhj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueoqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkxbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb5ht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq4p7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ihqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fmv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjhn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjl5b")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yv4x"]
+atlas = ExtResource("2_5duka")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkgql"]
+atlas = ExtResource("2_5duka")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te8c7"]
+atlas = ExtResource("2_5duka")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvq5v"]
+atlas = ExtResource("2_5duka")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc02t"]
+atlas = ExtResource("2_5duka")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umiq5"]
+atlas = ExtResource("2_5duka")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ra5dn"]
+atlas = ExtResource("2_5duka")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7bd6"]
+atlas = ExtResource("2_5duka")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew000"]
+atlas = ExtResource("2_5duka")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guujc"]
+atlas = ExtResource("2_5duka")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_puifk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yv4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkgql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te8c7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvq5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc02t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umiq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ra5dn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7bd6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ew000")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_guujc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jsr27"]
+radius = 142.004
+
+[node name="BigCannonProjectile" instance=ExtResource("1_pnjdo")]
+script = ExtResource("2_ksbmi")
+
+[node name="HitboxComponent" parent="." index="0"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_827rs")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_1rewm")
+animation = &"fire"
+autoplay = "fire"
+frame_progress = 0.587732
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_puifk")
+autoplay = "default"
+frame_progress = 0.814964
+
+[node name="MoveComponent" parent="." index="3"]
+velocity = Vector2(0, -100)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+position = Vector2(-1.78814e-07, 1.19209e-07)
+scale = Vector2(0.7, 0.7)
+
+[node name="FlashComponent" parent="." index="5" node_paths=PackedStringArray("sprite")]
+sprite = NodePath("../AnimatedSprite2D2")
+
+[node name="ScaleComponent" parent="." index="6" node_paths=PackedStringArray("sprite")]
+sprite = NodePath("../AnimatedSprite2D2")
+
+[node name="BigExplosion" type="Area2D" parent="." index="7"]
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+script = ExtResource("3_8y54c")
+damage = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigExplosion" index="0"]
+shape = SubResource("CircleShape2D_jsr27")
+debug_color = Color(0.72549, 0.45098, 0.435294, 0.243137)
+
+[node name="Hint" type="Label" parent="." index="8"]
+offset_left = -34.0
+offset_top = 18.0
+offset_right = 62.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("4_ovnh1")
+theme_override_font_sizes/font_size = 6
+text = "Press again to explode"

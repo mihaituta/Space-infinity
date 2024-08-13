@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://dvdj5xdmsujku"]
+
+[ext_resource type="Script" path="res://weapons/projectiles/player/laser/laser.gd" id="1_k7vf6"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="2_tskb2"]
+[ext_resource type="Texture2D" uid="uid://d144et1501v3w" path="res://assets/MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Zapper.png" id="3_26u37"]
+[ext_resource type="Texture2D" uid="uid://cgqidwkyfntus" path="res://assets/EnemyFleet_1/Kla'ed/Projectiles/PNGs/Kla'ed - Ray.png" id="4_mvoaf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4htvw"]
+size = Vector2(10, 261)
+
+[sub_resource type="Animation" id="Animation_ld3cr"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ava74"]
+resource_name = "default"
+length = 0.8
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g10ku"]
+_data = {
+"RESET": SubResource("Animation_ld3cr"),
+"default": SubResource("Animation_ava74")
+}
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_860kv"]
+texture = ExtResource("3_26u37")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 8
+0:0/animation_speed = 10.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6cyiv"]
+texture = ExtResource("4_mvoaf")
+texture_region_size = Vector2i(18, 38)
+0:0/animation_columns = 4
+0:0/animation_speed = 10.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ybecy"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_860kv")
+sources/1 = SubResource("TileSetAtlasSource_6cyiv")
+
+[node name="Laser" type="Node2D"]
+script = ExtResource("1_k7vf6")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_tskb2")
+damage = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -120.5)
+shape = SubResource("RectangleShape2D_4htvw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g10ku")
+}
+autoplay = "default"
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(16, 8)
+tile_set = SubResource("TileSet_ybecy")
+rendering_quadrant_size = 32
+format = 2
+layer_0/tile_data = PackedInt32Array(-65537, 1, 0, -131073, 1, 0, -196609, 1, 0, -262145, 1, 0, -327681, 1, 0, -393217, 1, 0, -458753, 1, 0, -1, 1, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true

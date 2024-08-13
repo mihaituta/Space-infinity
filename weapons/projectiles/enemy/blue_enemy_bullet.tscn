@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=3 uid="uid://iuelvuusx0o0"]
+
+[ext_resource type="PackedScene" uid="uid://c84xddq1o7g2m" path="res://weapons/projectiles/player/projectile.tscn" id="1_1wbgi"]
+[ext_resource type="Texture2D" uid="uid://bvrw57pgjrn7i" path="res://assets/EnemyFleet_3/Nautolan/Weapon Effects - Projectiles/PNGs/Nautolan - Bullet.png" id="2_wa0gk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7d5m"]
+size = Vector2(6, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdsll"]
+atlas = ExtResource("2_wa0gk")
+region = Rect2(0, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htqqg"]
+atlas = ExtResource("2_wa0gk")
+region = Rect2(9, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eisy3"]
+atlas = ExtResource("2_wa0gk")
+region = Rect2(18, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnlgp"]
+atlas = ExtResource("2_wa0gk")
+region = Rect2(27, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x73sw"]
+atlas = ExtResource("2_wa0gk")
+region = Rect2(36, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kra6"]
+atlas = ExtResource("2_wa0gk")
+region = Rect2(45, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45ioc"]
+atlas = ExtResource("2_wa0gk")
+region = Rect2(54, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rojqs"]
+atlas = ExtResource("2_wa0gk")
+region = Rect2(63, 0, 9, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1e4yw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdsll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htqqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eisy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnlgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x73sw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kra6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45ioc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rojqs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="BlueEnemyBullet" instance=ExtResource("1_1wbgi")]
+
+[node name="HitboxComponent" parent="." index="0"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_d7d5m")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(0, 3)
+rotation = -3.14159
+sprite_frames = SubResource("SpriteFrames_1e4yw")
+autoplay = "default"
+frame_progress = 0.815662
+
+[node name="MoveComponent" parent="." index="2"]
+velocity = Vector2(0, 200)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+position = Vector2(0, 1.5)
+scale = Vector2(0.3, 0.55)
