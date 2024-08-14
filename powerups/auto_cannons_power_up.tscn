@@ -1,0 +1,113 @@
+[gd_scene load_steps=18 format=3 uid="uid://dva21te8inshd"]
+
+[ext_resource type="PackedScene" uid="uid://b6y3lh4tcphy0" path="res://powerups/power_up.tscn" id="1_26yuu"]
+[ext_resource type="Script" path="res://powerups/auto_cannons_power_up.gd" id="2_lbhen"]
+[ext_resource type="Texture2D" uid="uid://cnqlewwt004pl" path="res://assets/PickupsPack/Weapons/PNGs/Pickup Icon - Weapons - Auto Cannons.png" id="2_ukito"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2ltm"]
+atlas = ExtResource("2_ukito")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e63f1"]
+atlas = ExtResource("2_ukito")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi8vf"]
+atlas = ExtResource("2_ukito")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr3qp"]
+atlas = ExtResource("2_ukito")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5of1p"]
+atlas = ExtResource("2_ukito")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yp2j"]
+atlas = ExtResource("2_ukito")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jv040"]
+atlas = ExtResource("2_ukito")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3usw"]
+atlas = ExtResource("2_ukito")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u0br"]
+atlas = ExtResource("2_ukito")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcilk"]
+atlas = ExtResource("2_ukito")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7bee"]
+atlas = ExtResource("2_ukito")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkrco"]
+atlas = ExtResource("2_ukito")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dj8sm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2ltm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e63f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi8vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr3qp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5of1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yp2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jv040")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3usw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u0br")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcilk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7bee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkrco")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ocay"]
+radius = 18.7916
+
+[node name="AutoCannonsPowerUp" instance=ExtResource("1_26yuu")]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("2_lbhen")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_dj8sm")
+autoplay = "default"
+frame = 10
+frame_progress = 0.395813
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_5ocay")

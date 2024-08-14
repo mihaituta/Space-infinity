@@ -1,59 +1,216 @@
-[gd_scene load_steps=10 format=3 uid="uid://1j0bnf3snr6"]
+[gd_scene load_steps=31 format=3 uid="uid://1j0bnf3snr6"]
 
 [ext_resource type="PackedScene" uid="uid://boalwrc8uak3" path="res://enemies/enemy.tscn" id="1_n7do1"]
 [ext_resource type="Script" path="res://enemies/green_enemy.gd" id="2_s670h"]
-[ext_resource type="Texture2D" uid="uid://b61k0ifgprcsw" path="res://assets/yellow_enemy.png" id="3_633ct"]
+[ext_resource type="Texture2D" uid="uid://bhdtnsytw12cv" path="res://assets/EnemyFleet_2/Nairan/Weapons/PNGs/Nairan - Fighter - Weapons.png" id="3_j8hoi"]
+[ext_resource type="Texture2D" uid="uid://vmq77yb5dplf" path="res://assets/EnemyFleet_2/Nairan/Engine Effects/PNGs/Nairan - Fighter - Engine.png" id="3_ssfyb"]
 [ext_resource type="Script" path="res://components/border_bounce_component.gd" id="4_6hl6b"]
+[ext_resource type="PackedScene" uid="uid://bvtixi3vkwsb4" path="res://weapons/projectiles/enemy/green_enemy/green_enemy_rocket.tscn" id="4_13pvd"]
+[ext_resource type="Script" path="res://components/timed_state_componoent.gd" id="5_6htru"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="6_ouo5q"]
+[ext_resource type="Script" path="res://components/state_component.gd" id="7_h0ykm"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="8_3fhrv"]
+[ext_resource type="Script" path="res://components/power_up_droppable_component.gd" id="11_1n40c"]
+[ext_resource type="PackedScene" uid="uid://dxd0prhrioo1d" path="res://powerups/shield_power_up.tscn" id="12_nxla2"]
+[ext_resource type="PackedScene" uid="uid://d3rw7opfwbkrm" path="res://powerups/laser_power_up.tscn" id="12_pg14d"]
+[ext_resource type="PackedScene" uid="uid://dcu7dxnn6qorl" path="res://powerups/rockets_power_up.tscn" id="13_sbpkc"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6dd7a"]
-atlas = ExtResource("3_633ct")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2li7"]
+atlas = ExtResource("3_ssfyb")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5tig3"]
-atlas = ExtResource("3_633ct")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nbg8"]
+atlas = ExtResource("3_ssfyb")
+region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_y862g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkwmd"]
+atlas = ExtResource("3_ssfyb")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fheng"]
+atlas = ExtResource("3_ssfyb")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k77dw"]
+atlas = ExtResource("3_ssfyb")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcjk7"]
+atlas = ExtResource("3_ssfyb")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyp7i"]
+atlas = ExtResource("3_ssfyb")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggkt1"]
+atlas = ExtResource("3_ssfyb")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8g5l"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6dd7a")
+"texture": SubResource("AtlasTexture_p2li7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5tig3")
+"texture": SubResource("AtlasTexture_2nbg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkwmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fheng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k77dw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcjk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyp7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggkt1")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4mq4t"]
-size = Vector2(16, 10)
+size = Vector2(30, 27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxbrr"]
-size = Vector2(12, 8)
+size = Vector2(12, 25)
+
+[sub_resource type="Animation" id="Animation_lheyb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nysv4"]
+resource_name = "fire_rockets"
+length = 2.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 0.9, 1.3, 1.7, 2.1, 2.5, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"fire_rocket"
+}, {
+"args": [1],
+"method": &"fire_rocket"
+}, {
+"args": [2],
+"method": &"fire_rocket"
+}, {
+"args": [3],
+"method": &"fire_rocket"
+}, {
+"args": [4],
+"method": &"fire_rocket"
+}, {
+"args": [5],
+"method": &"fire_rocket"
+}, {
+"args": [],
+"method": &"start_idle_animation"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_v6suu"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m0igg"]
+_data = {
+"RESET": SubResource("Animation_lheyb"),
+"fire_rockets": SubResource("Animation_nysv4"),
+"idle": SubResource("Animation_v6suu")
+}
+
+[sub_resource type="PackedScene" id="PackedScene_ycrsg"]
 
 [node name="GreenEnemy" instance=ExtResource("1_n7do1")]
 script = ExtResource("2_s670h")
 
-[node name="AnimatedSprite2D" parent="." index="0"]
-sprite_frames = SubResource("SpriteFrames_y862g")
+[node name="Engine" parent="Anchor" index="0"]
+position = Vector2(0, 2)
+rotation = -3.14159
+sprite_frames = SubResource("SpriteFrames_h8g5l")
 autoplay = "default"
-frame_progress = 0.6871
+frame_progress = 0.151742
+
+[node name="Ship" parent="Anchor" index="1"]
+visible = false
+rotation = -3.14159
+
+[node name="Sprite2D" type="Sprite2D" parent="Anchor" index="2"]
+rotation = -3.14159
+texture = ExtResource("3_j8hoi")
+hframes = 28
 
 [node name="StatsComponent" parent="." index="1"]
-health = 6
+health = 4
 
 [node name="MoveComponent" parent="." index="2"]
 velocity = Vector2(0, 20)
 
+[node name="ScaleComponent" parent="." index="3"]
+scale_amount = Vector2(1.2, 1.2)
+
 [node name="VisibleOnScreenNotifier2D" parent="." index="4"]
-scale = Vector2(0.8, 0.5)
+position = Vector2(-7.15256e-07, -1.5)
+scale = Vector2(1.5, 1.35)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_4mq4t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_sxbrr")
 debug_color = Color(0.729412, 0.380392, 0.352941, 0.572549)
 
@@ -64,3 +221,71 @@ adjust_amount = 10
 script = ExtResource("4_6hl6b")
 actor = NodePath("..")
 move_component = NodePath("../MoveComponent")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="15"]
+libraries = {
+"": SubResource("AnimationLibrary_m0igg")
+}
+speed_scale = 1.5
+
+[node name="RocketsMarkers" type="Node2D" parent="." index="16"]
+position = Vector2(0, 1)
+
+[node name="Rocket1" type="Marker2D" parent="RocketsMarkers" index="0"]
+position = Vector2(-8, 15)
+
+[node name="Rocket2" type="Marker2D" parent="RocketsMarkers" index="1"]
+position = Vector2(8, 15)
+
+[node name="Rocket3" type="Marker2D" parent="RocketsMarkers" index="2"]
+position = Vector2(-10, 15)
+
+[node name="Rocket4" type="Marker2D" parent="RocketsMarkers" index="3"]
+position = Vector2(10, 15)
+
+[node name="Rocket5" type="Marker2D" parent="RocketsMarkers" index="4"]
+position = Vector2(-12, 15)
+
+[node name="Rocket6" type="Marker2D" parent="RocketsMarkers" index="5"]
+position = Vector2(12, 15)
+
+[node name="States" type="Node" parent="." index="17"]
+
+[node name="MoveSideState" type="Node" parent="States" index="0"]
+unique_name_in_owner = true
+script = ExtResource("5_6htru")
+
+[node name="MoveSideComponent" type="Node" parent="States/MoveSideState" index="0" node_paths=PackedStringArray("actor")]
+unique_name_in_owner = true
+script = ExtResource("6_ouo5q")
+actor = NodePath("../../..")
+
+[node name="BorderBounceComponent" type="Node" parent="States/MoveSideState" index="1" node_paths=PackedStringArray("actor", "move_component")]
+script = ExtResource("4_6hl6b")
+actor = NodePath("../../..")
+move_component = NodePath("../MoveSideComponent")
+
+[node name="FireRocketsState" type="Node" parent="States" index="1"]
+unique_name_in_owner = true
+script = ExtResource("7_h0ykm")
+
+[node name="RocketsSpawnerComponent" type="Node2D" parent="States/FireRocketsState" index="0"]
+unique_name_in_owner = true
+script = ExtResource("8_3fhrv")
+scene = ExtResource("4_13pvd")
+
+[node name="PauseState" type="Node" parent="States" index="2"]
+unique_name_in_owner = true
+script = ExtResource("5_6htru")
+duration = 5.0
+
+[node name="PowerUpDroppableComponent" type="Node" parent="." index="18" node_paths=PackedStringArray("SpawnPoint", "Stats")]
+script = ExtResource("11_1n40c")
+SpawnPoint = NodePath("..")
+Stats = NodePath("../StatsComponent")
+PowerUps = Array[PackedScene]([ExtResource("12_nxla2"), ExtResource("12_pg14d"), ExtResource("13_sbpkc")])
+PowerUpsCooldown = Array[int]([5, 10, 10])
+
+[node name="PowerUpSpawnerComponent" type="Node2D" parent="." index="19"]
+script = ExtResource("8_3fhrv")
+scene = SubResource("PackedScene_ycrsg")

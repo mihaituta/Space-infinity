@@ -1,8 +1,17 @@
-[gd_scene load_steps=24 format=3 uid="uid://cm18kn0j5ljmg"]
+[gd_scene load_steps=31 format=3 uid="uid://cm18kn0j5ljmg"]
 
 [ext_resource type="PackedScene" uid="uid://boalwrc8uak3" path="res://enemies/enemy.tscn" id="1_bnkfy"]
+[ext_resource type="Script" path="res://enemies/red_enemy.gd" id="2_6l2pl"]
 [ext_resource type="Texture2D" uid="uid://bhvbtxudpj8us" path="res://assets/EnemyFleet_1/Kla'ed/Weapons/PNGs/Kla'ed - Fighter - Weapons.png" id="3_c47rs"]
 [ext_resource type="Texture2D" uid="uid://bcka7af0ako57" path="res://assets/EnemyFleet_1/Kla'ed/Engine/PNGs/Kla'ed - Fighter - Engine.png" id="3_qf0oe"]
+[ext_resource type="Script" path="res://components/variable_pitch_audio_stream_player.gd" id="5_ht0te"]
+[ext_resource type="AudioStream" uid="uid://cp2ppdcep7odg" path="res://sounds/laser_sound.wav" id="5_ohr5r"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="8_v1pfx"]
+[ext_resource type="Script" path="res://components/power_up_droppable_component.gd" id="9_1fs3k"]
+[ext_resource type="PackedScene" uid="uid://dva21te8inshd" path="res://powerups/auto_cannons_power_up.tscn" id="10_21och"]
+[ext_resource type="PackedScene" uid="uid://b04sk45h5vosn" path="res://weapons/projectiles/enemy/red_enemy/red_enemy_bullet.tscn" id="10_cjem4"]
+[ext_resource type="PackedScene" uid="uid://dxd0prhrioo1d" path="res://powerups/shield_power_up.tscn" id="10_w23jy"]
+[ext_resource type="PackedScene" uid="uid://dcu7dxnn6qorl" path="res://powerups/rockets_power_up.tscn" id="11_4x8y3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w06oi"]
 atlas = ExtResource("3_qf0oe")
@@ -82,100 +91,158 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pynh8"]
-atlas = ExtResource("3_c47rs")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7myyt"]
-atlas = ExtResource("3_c47rs")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b6iua"]
-atlas = ExtResource("3_c47rs")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lhfes"]
-atlas = ExtResource("3_c47rs")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i277b"]
-atlas = ExtResource("3_c47rs")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sitbx"]
-atlas = ExtResource("3_c47rs")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lttqq"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pynh8")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7myyt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b6iua")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lhfes")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i277b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sitbx")
-}],
-"loop": true,
-"name": &"fire",
-"speed": 10.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_5sdh8"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3d2c"]
+size = Vector2(24, 19)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mwcr3"]
-radius = 6.0
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_dgyik"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_olqps"]
+resource_name = "fire_bullets"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"start_fire_autocannons"
+}, {
+"args": [],
+"method": &"start_idle_animation"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_qd3w4"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c074r"]
+_data = {
+"RESET": SubResource("Animation_dgyik"),
+"fire_bullets": SubResource("Animation_olqps"),
+"idle": SubResource("Animation_qd3w4")
+}
+
+[sub_resource type="PackedScene" id="PackedScene_r2aak"]
 
 [node name="RedEnemy" instance=ExtResource("1_bnkfy")]
+script = ExtResource("2_6l2pl")
+
+[node name="BulletMarkerLeft" type="Marker2D" parent="." index="0"]
+position = Vector2(-6, 6)
+
+[node name="BulletMarkerRight" type="Marker2D" parent="." index="1"]
+position = Vector2(6, 6)
 
 [node name="Engine" parent="Anchor" index="0"]
+position = Vector2(0, 2)
 rotation = -3.14159
 sprite_frames = SubResource("SpriteFrames_ml016")
 autoplay = "default"
-frame_progress = 0.286302
+frame_progress = 0.955307
 
-[node name="AnimatedSprite2D" parent="Anchor" index="1"]
+[node name="Ship" parent="Anchor" index="1"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Anchor" index="2"]
 position = Vector2(0, -2)
 rotation = -3.14159
-sprite_frames = SubResource("SpriteFrames_lttqq")
-frame_progress = 0.846573
+texture = ExtResource("3_c47rs")
+hframes = 6
 
-[node name="StatsComponent" parent="." index="1"]
+[node name="StatsComponent" parent="." index="3"]
 health = 3
 
-[node name="MoveComponent" parent="." index="2"]
-velocity = Vector2(0, 40)
+[node name="MoveComponent" parent="." index="4"]
+velocity = Vector2(0, 30)
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
-visible = false
+[node name="ScaleComponent" parent="." index="5"]
+scale_amount = Vector2(1.2, 1.2)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
 position = Vector2(-1.16229e-06, -5.96046e-07)
 scale = Vector2(1.2, 1.1)
 
-[node name="HurtboxComponent" parent="." index="7"]
-visible = false
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
-shape = SubResource("CircleShape2D_5sdh8")
-
-[node name="HitboxComponent" parent="." index="8"]
-visible = false
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_b3d2c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
 shape = SubResource("CircleShape2D_mwcr3")
+
+[node name="FireBulletsAudioStreamPlayer" type="AudioStreamPlayer" parent="." index="16"]
+stream = ExtResource("5_ohr5r")
+volume_db = -5.0
+bus = &"Sounds"
+script = ExtResource("5_ht0te")
+
+[node name="ProjectileSpawnerComponent" type="Node2D" parent="." index="17"]
+script = ExtResource("8_v1pfx")
+scene = ExtResource("10_cjem4")
+
+[node name="FireRate" type="Timer" parent="." index="18"]
+wait_time = 3.0
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="19"]
+libraries = {
+"": SubResource("AnimationLibrary_c074r")
+}
+
+[node name="PowerUpDroppableComponent" type="Node" parent="." index="20" node_paths=PackedStringArray("SpawnPoint", "Stats")]
+script = ExtResource("9_1fs3k")
+SpawnPoint = NodePath("..")
+Stats = NodePath("../StatsComponent")
+PowerUps = Array[PackedScene]([ExtResource("10_w23jy"), ExtResource("11_4x8y3"), ExtResource("10_21och")])
+PowerUpsCooldown = Array[int]([5, 10, 15])
+
+[node name="PowerUpSpawnerComponent" type="Node2D" parent="." index="21"]
+script = ExtResource("8_v1pfx")
+scene = SubResource("PackedScene_r2aak")
+
+[connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]

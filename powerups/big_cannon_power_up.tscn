@@ -1,0 +1,133 @@
+[gd_scene load_steps=21 format=3 uid="uid://b8ko8f1s3hkjr"]
+
+[ext_resource type="PackedScene" uid="uid://b6y3lh4tcphy0" path="res://powerups/power_up.tscn" id="1_tmqms"]
+[ext_resource type="Texture2D" uid="uid://bcejxansb44fr" path="res://assets/PickupsPack/Weapons/PNGs/Pickup Icon - Weapons - Big Space Gun 2000.png" id="2_3r7kx"]
+[ext_resource type="Script" path="res://powerups/big_cannon_power_up.gd" id="2_ghfiw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmjbx"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkt0u"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehfia"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_044hm"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql85j"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kbul"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyoj2"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bpqp"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pn0p"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugox6"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmfwk"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3e00l"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhvhb"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k04nl"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lprbg"]
+atlas = ExtResource("2_3r7kx")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_htmb1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmjbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkt0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehfia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_044hm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql85j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kbul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyoj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bpqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pn0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugox6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmfwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3e00l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhvhb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k04nl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lprbg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ktfme"]
+radius = 16.25
+
+[node name="BigCannonPowerUp" instance=ExtResource("1_tmqms")]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("2_ghfiw")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_htmb1")
+autoplay = "default"
+frame_progress = 0.736933
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_ktfme")

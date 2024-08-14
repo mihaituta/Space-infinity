@@ -1,0 +1,133 @@
+[gd_scene load_steps=21 format=3 uid="uid://dcu7dxnn6qorl"]
+
+[ext_resource type="PackedScene" uid="uid://b6y3lh4tcphy0" path="res://powerups/power_up.tscn" id="1_xqxxu"]
+[ext_resource type="Texture2D" uid="uid://dd22ecle3g45m" path="res://assets/PickupsPack/Weapons/PNGs/Pickup Icon - Weapons - Rocket.png" id="2_aegms"]
+[ext_resource type="Script" path="res://powerups/rockets_power_up.gd" id="2_ixl3o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xqgt"]
+atlas = ExtResource("2_aegms")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuuff"]
+atlas = ExtResource("2_aegms")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0odi"]
+atlas = ExtResource("2_aegms")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ge0ww"]
+atlas = ExtResource("2_aegms")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3rdd"]
+atlas = ExtResource("2_aegms")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fscj"]
+atlas = ExtResource("2_aegms")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkrqr"]
+atlas = ExtResource("2_aegms")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxu0e"]
+atlas = ExtResource("2_aegms")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_431q2"]
+atlas = ExtResource("2_aegms")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkimj"]
+atlas = ExtResource("2_aegms")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijvjm"]
+atlas = ExtResource("2_aegms")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s166"]
+atlas = ExtResource("2_aegms")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyup8"]
+atlas = ExtResource("2_aegms")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1vud"]
+atlas = ExtResource("2_aegms")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5yxd"]
+atlas = ExtResource("2_aegms")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ii4s3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xqgt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuuff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0odi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ge0ww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3rdd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fscj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkrqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxu0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_431q2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkimj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijvjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0s166")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyup8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1vud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5yxd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d3jyr"]
+radius = 23.5702
+
+[node name="RocketsPowerUp" instance=ExtResource("1_xqxxu")]
+scale = Vector2(0.6, 0.6)
+script = ExtResource("2_ixl3o")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_ii4s3")
+autoplay = "default"
+frame_progress = 0.468254
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_d3jyr")

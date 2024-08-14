@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://fcgyuujissnh"]
+[gd_scene load_steps=33 format=3 uid="uid://fcgyuujissnh"]
 
 [ext_resource type="PackedScene" uid="uid://boalwrc8uak3" path="res://enemies/enemy.tscn" id="1_8t0q5"]
 [ext_resource type="Script" path="res://enemies/blue_enemy.gd" id="2_oqqal"]
@@ -9,7 +9,14 @@
 [ext_resource type="Script" path="res://components/border_bounce_component.gd" id="7_ggrrc"]
 [ext_resource type="Script" path="res://components/state_component.gd" id="8_m683e"]
 [ext_resource type="Script" path="res://components/spawner_component.gd" id="9_1savg"]
-[ext_resource type="PackedScene" uid="uid://iuelvuusx0o0" path="res://weapons/projectiles/enemy/blue_enemy_bullet.tscn" id="10_2wmmi"]
+[ext_resource type="PackedScene" uid="uid://iuelvuusx0o0" path="res://weapons/projectiles/enemy/blue_enemy/blue_enemy_bullet.tscn" id="10_p4vni"]
+[ext_resource type="PackedScene" uid="uid://d4hs7442hsq4x" path="res://weapons/projectiles/enemy/blue_enemy/blue_enemy_rockets.tscn" id="11_xrvuf"]
+[ext_resource type="AudioStream" uid="uid://cp2ppdcep7odg" path="res://sounds/laser_sound.wav" id="12_l71vf"]
+[ext_resource type="Script" path="res://components/variable_pitch_audio_stream_player.gd" id="13_clasr"]
+[ext_resource type="Script" path="res://components/power_up_droppable_component.gd" id="14_dhgdj"]
+[ext_resource type="PackedScene" uid="uid://b8ko8f1s3hkjr" path="res://powerups/big_cannon_power_up.tscn" id="15_6620c"]
+[ext_resource type="PackedScene" uid="uid://d3rw7opfwbkrm" path="res://powerups/laser_power_up.tscn" id="16_pvwpp"]
+[ext_resource type="PackedScene" uid="uid://dxd0prhrioo1d" path="res://powerups/shield_power_up.tscn" id="17_jvnij"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mxw0w"]
 atlas = ExtResource("3_bxm2j")
@@ -75,8 +82,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mcqd7"]
-radius = 11.0454
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvuhl"]
+size = Vector2(31, 28)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cjbo1"]
 radius = 9.0
@@ -132,50 +139,53 @@ _data = {
 "fire_bullet": SubResource("Animation_wygns")
 }
 
+[sub_resource type="PackedScene" id="PackedScene_lnj8g"]
+
 [node name="BlueEnemy" instance=ExtResource("1_8t0q5")]
 script = ExtResource("2_oqqal")
 
+[node name="RocketMuzzleLeft" type="Marker2D" parent="." index="0"]
+position = Vector2(-10, 2)
+
+[node name="RocketMuzzleRight" type="Marker2D" parent="." index="1"]
+position = Vector2(10, 2)
+
 [node name="Engine" parent="Anchor" index="0"]
-position = Vector2(0, 5)
+position = Vector2(0, 7)
 rotation = -3.14159
 sprite_frames = SubResource("SpriteFrames_gdmph")
 autoplay = "default"
-frame_progress = 0.519189
+frame_progress = 0.136368
 
 [node name="Sprite2D" type="Sprite2D" parent="Anchor" index="1"]
 rotation = 3.14159
 texture = ExtResource("5_67151")
 hframes = 7
 
-[node name="AnimatedSprite2D" parent="Anchor" index="2"]
-visible = false
+[node name="StatsComponent" parent="." index="3"]
+health = 4
 
-[node name="StatsComponent" parent="." index="1"]
-health = 6
-
-[node name="MoveComponent" parent="." index="2"]
+[node name="MoveComponent" parent="." index="4"]
 velocity = Vector2(0, 10)
 
-[node name="ScaleComponent" parent="." index="3"]
+[node name="ScaleComponent" parent="." index="5"]
 scale_amount = Vector2(1.2, 1.2)
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
-visible = false
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
 position = Vector2(9.53674e-07, 1)
 scale = Vector2(1.1, 1.1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
-visible = false
-shape = SubResource("CircleShape2D_mcqd7")
+position = Vector2(-0.5, -4)
+shape = SubResource("RectangleShape2D_hvuhl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
-visible = false
 shape = SubResource("CircleShape2D_cjbo1")
 
-[node name="ScoreComponent" parent="." index="12"]
+[node name="ScoreComponent" parent="." index="14"]
 adjust_amount = 20
 
-[node name="States" type="Node" parent="." index="13"]
+[node name="States" type="Node" parent="." index="15"]
 
 [node name="MoveDownState" type="Node" parent="States" index="0"]
 unique_name_in_owner = true
@@ -190,38 +200,62 @@ velocity = Vector2(0, 15)
 [node name="MoveSideState" type="Node" parent="States" index="1"]
 unique_name_in_owner = true
 script = ExtResource("5_n02g5")
-duration = 3.0
 
 [node name="MoveSideComponent" type="Node" parent="States/MoveSideState" index="0" node_paths=PackedStringArray("actor")]
 unique_name_in_owner = true
 script = ExtResource("6_o8ak0")
 actor = NodePath("../../..")
-velocity = Vector2(20, 0)
 
 [node name="BorderBounceComponent" type="Node" parent="States/MoveSideState" index="1" node_paths=PackedStringArray("actor", "move_component")]
 script = ExtResource("7_ggrrc")
 actor = NodePath("../../..")
 move_component = NodePath("../MoveSideComponent")
 
-[node name="FireState" type="Node" parent="States" index="2"]
+[node name="FireBulletState" type="Node" parent="States" index="2"]
 unique_name_in_owner = true
 script = ExtResource("8_m683e")
 
-[node name="ProjectileSpawnerComponent" type="Node2D" parent="States/FireState" index="0"]
+[node name="ProjectileSpawnerComponent" type="Node2D" parent="States/FireBulletState" index="0"]
 unique_name_in_owner = true
 script = ExtResource("9_1savg")
-scene = ExtResource("10_2wmmi")
+scene = ExtResource("10_p4vni")
 
-[node name="PauseState" type="Node" parent="States" index="3"]
+[node name="FireRocketsState" type="Node" parent="States" index="3"]
+unique_name_in_owner = true
+script = ExtResource("8_m683e")
+
+[node name="RocketsSpawnerComponent" type="Node2D" parent="States/FireRocketsState" index="0"]
+unique_name_in_owner = true
+script = ExtResource("9_1savg")
+scene = ExtResource("11_xrvuf")
+
+[node name="PauseState" type="Node" parent="States" index="4"]
 unique_name_in_owner = true
 script = ExtResource("5_n02g5")
-duration = 3.0
+duration = 2.0
 
-[node name="BulletMuzzle" type="Marker2D" parent="." index="15"]
+[node name="FireBulletsAudioStreamPlayer" type="AudioStreamPlayer" parent="." index="17"]
+stream = ExtResource("12_l71vf")
+volume_db = -5.0
+bus = &"Sounds"
+script = ExtResource("13_clasr")
+
+[node name="BulletMuzzle" type="Marker2D" parent="." index="18"]
 position = Vector2(0, 8)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="16"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="19"]
 libraries = {
 "": SubResource("AnimationLibrary_bom57")
 }
 autoplay = "RESET"
+
+[node name="PowerUpDroppableComponent" type="Node" parent="." index="20" node_paths=PackedStringArray("SpawnPoint", "Stats")]
+script = ExtResource("14_dhgdj")
+SpawnPoint = NodePath("..")
+Stats = NodePath("../StatsComponent")
+PowerUps = Array[PackedScene]([ExtResource("15_6620c"), ExtResource("17_jvnij"), ExtResource("16_pvwpp")])
+PowerUpsCooldown = Array[int]([10, 10, 15])
+
+[node name="PowerUpSpawnerComponent" type="Node2D" parent="." index="21"]
+script = ExtResource("9_1savg")
+scene = SubResource("PackedScene_lnj8g")

@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://b04sk45h5vosn"]
+
+[ext_resource type="PackedScene" uid="uid://c84xddq1o7g2m" path="res://weapons/projectiles/player/projectile.tscn" id="1_jxb2i"]
+[ext_resource type="Texture2D" uid="uid://dbhy0m0hed785" path="res://assets/EnemyFleet_1/Kla'ed/Projectiles/PNGs/Kla'ed - Big Bullet.png" id="2_yjf5g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dp3xc"]
+size = Vector2(4, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqkof"]
+atlas = ExtResource("2_yjf5g")
+region = Rect2(0, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7br0"]
+atlas = ExtResource("2_yjf5g")
+region = Rect2(8, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu25j"]
+atlas = ExtResource("2_yjf5g")
+region = Rect2(16, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijndj"]
+atlas = ExtResource("2_yjf5g")
+region = Rect2(24, 0, 8, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1gjt0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqkof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7br0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cu25j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijndj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="RedEnemyBullet" instance=ExtResource("1_jxb2i")]
+scale = Vector2(0.8, 0.8)
+
+[node name="HitboxComponent" parent="." index="0"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_dp3xc")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+rotation = -3.14159
+sprite_frames = SubResource("SpriteFrames_1gjt0")
+autoplay = "default"
+frame_progress = 0.629996
+
+[node name="MoveComponent" parent="." index="2"]
+velocity = Vector2(0, 150)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+position = Vector2(4.76837e-07, -1.5)
+scale = Vector2(0.2, 0.55)

@@ -1,0 +1,133 @@
+[gd_scene load_steps=21 format=3 uid="uid://dxd0prhrioo1d"]
+
+[ext_resource type="PackedScene" uid="uid://b6y3lh4tcphy0" path="res://powerups/power_up.tscn" id="1_dpiw4"]
+[ext_resource type="Texture2D" uid="uid://jmq0qxnd2me6" path="res://assets/PickupsPack/Shield Generators/PNGs/Pickup Icon - Shield Generator - Invincibility Shield.png" id="2_61hwp"]
+[ext_resource type="Script" path="res://powerups/shield_power_up.gd" id="2_g4ris"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgr5p"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc5nw"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48lhf"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nmeb"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8mgw"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2v2o"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20rct"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anl0u"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri6ho"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ne3va"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq2lq"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w8sj"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6luw4"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l72m5"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_td2af"]
+atlas = ExtResource("2_61hwp")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v3ahv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgr5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc5nw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48lhf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nmeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8mgw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2v2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20rct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anl0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri6ho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ne3va")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq2lq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w8sj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6luw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l72m5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_td2af")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_41hwx"]
+radius = 21.7307
+
+[node name="ShieldPowerUp" instance=ExtResource("1_dpiw4")]
+scale = Vector2(0.6, 0.6)
+script = ExtResource("2_g4ris")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_v3ahv")
+autoplay = "default"
+frame_progress = 0.554756
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_41hwx")

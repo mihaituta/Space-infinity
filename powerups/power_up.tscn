@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6y3lh4tcphy0"]
+
+[ext_resource type="Script" path="res://components/move_component.gd" id="1_5mwit"]
+[ext_resource type="Script" path="res://powerups/power_up.gd" id="1_tnmrs"]
+[ext_resource type="Script" path="res://components/shake_component.gd" id="3_mykmu"]
+[ext_resource type="Script" path="res://components/scale_component.gd" id="4_qq34u"]
+[ext_resource type="Script" path="res://components/flash_component.gd" id="5_c38li"]
+
+[node name="PowerUp" type="Node2D"]
+script = ExtResource("1_tnmrs")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("1_5mwit")
+actor = NodePath("..")
+velocity = Vector2(0, 50)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ShakeComponent" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("3_mykmu")
+node = NodePath("../AnimatedSprite2D")
+
+[node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("4_qq34u")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="FlashComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_c38li")
+sprite = NodePath("../AnimatedSprite2D")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

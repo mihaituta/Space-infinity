@@ -1,41 +1,41 @@
 [gd_scene load_steps=13 format=3 uid="uid://iuelvuusx0o0"]
 
-[ext_resource type="PackedScene" uid="uid://c84xddq1o7g2m" path="res://weapons/projectiles/player/projectile.tscn" id="1_1wbgi"]
-[ext_resource type="Texture2D" uid="uid://bvrw57pgjrn7i" path="res://assets/EnemyFleet_3/Nautolan/Weapon Effects - Projectiles/PNGs/Nautolan - Bullet.png" id="2_wa0gk"]
+[ext_resource type="PackedScene" uid="uid://c84xddq1o7g2m" path="res://weapons/projectiles/player/projectile.tscn" id="1_d12fp"]
+[ext_resource type="Texture2D" uid="uid://bvrw57pgjrn7i" path="res://assets/EnemyFleet_3/Nautolan/Weapon Effects - Projectiles/PNGs/Nautolan - Bullet.png" id="2_r4h4h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7d5m"]
 size = Vector2(6, 11)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xdsll"]
-atlas = ExtResource("2_wa0gk")
+atlas = ExtResource("2_r4h4h")
 region = Rect2(0, 0, 9, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_htqqg"]
-atlas = ExtResource("2_wa0gk")
+atlas = ExtResource("2_r4h4h")
 region = Rect2(9, 0, 9, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eisy3"]
-atlas = ExtResource("2_wa0gk")
+atlas = ExtResource("2_r4h4h")
 region = Rect2(18, 0, 9, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vnlgp"]
-atlas = ExtResource("2_wa0gk")
+atlas = ExtResource("2_r4h4h")
 region = Rect2(27, 0, 9, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x73sw"]
-atlas = ExtResource("2_wa0gk")
+atlas = ExtResource("2_r4h4h")
 region = Rect2(36, 0, 9, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8kra6"]
-atlas = ExtResource("2_wa0gk")
+atlas = ExtResource("2_r4h4h")
 region = Rect2(45, 0, 9, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_45ioc"]
-atlas = ExtResource("2_wa0gk")
+atlas = ExtResource("2_r4h4h")
 region = Rect2(54, 0, 9, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rojqs"]
-atlas = ExtResource("2_wa0gk")
+atlas = ExtResource("2_r4h4h")
 region = Rect2(63, 0, 9, 12)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1e4yw"]
@@ -70,7 +70,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="BlueEnemyBullet" instance=ExtResource("1_1wbgi")]
+[node name="BlueEnemyBullet" instance=ExtResource("1_d12fp")]
 
 [node name="HitboxComponent" parent="." index="0"]
 collision_layer = 0
@@ -87,7 +87,7 @@ autoplay = "default"
 frame_progress = 0.815662
 
 [node name="MoveComponent" parent="." index="2"]
-velocity = Vector2(0, 200)
+velocity = Vector2(0, 80)
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="3"]
 position = Vector2(0, 1.5)

@@ -8,7 +8,7 @@ extends TextureButton
 
 var skill = null;
 
-var uses_left: int = 3:
+var uses_left: int = 0:
 	get:
 		return uses_left;
 	set(value):
@@ -29,7 +29,7 @@ func _ready() -> void:
 	change_key = "1";
 	uses_left_label.text = str(uses_left);
 	cooldown.max_value = timer.wait_time;
-	set_process(false);
+	#set_process(false);
 
 func _process(_delta: float) -> void:
 	uses_left_label.text = str(uses_left);
@@ -41,13 +41,12 @@ func _on_pressed() -> void:
 		uses_left -= 1;
 		if skill != null:
 			skill.cast_spell(owner)
-		
 			timer.start();
 			disabled = true;
-			set_process(true);
+			#set_process(true);
 
 func _on_timer_timeout() -> void:
-	disabled = false;
 	time.text = "";
 	cooldown.value = 0;
-	set_process(false);
+	disabled = false;
+	#set_process(false);

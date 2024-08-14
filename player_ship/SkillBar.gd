@@ -13,3 +13,7 @@ func _ready():
 	slots[2].skill = LaserSkill.new(slots[2]);
 	slots[3].skill = BigCannonSkill.new(slots[3]);
 	slots[4].skill = ShieldSkill.new(slots[4]);
+
+#func _process(delta: float) -> void:
+	#if Input.is_action_just_pressed("ui_accept"):
+		#slots[0].uses_left += 1

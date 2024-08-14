@@ -76,7 +76,8 @@ Key_5={
 
 2d_physics/layer_1="player_hurtbox"
 2d_physics/layer_2="enemy_hurtbox"
-2d_physics/layer_3="world"
+2d_physics/layer_3="player_power_ups"
+2d_physics/layer_4="power_up"
 
 [rendering]
 

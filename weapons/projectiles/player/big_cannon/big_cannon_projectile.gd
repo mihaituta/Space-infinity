@@ -4,7 +4,9 @@ extends Projectile
 @onready var big_explosion: HitboxComponent = $BigExplosion
 
 func _ready() -> void:
-	super()
+	#super()
+	scale_component.tween_scale();
+	visible_on_screen_notifier_2d.screen_exited.connect(queue_free);
 	hitbox_component.hit_hurtbox.connect(explode.unbind(1))
 
 func explode() -> void:

@@ -24,7 +24,7 @@ script = ExtResource("1_sdtwb")
 
 [node name="Engine" type="AnimatedSprite2D" parent="Anchor"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Anchor"]
+[node name="Ship" type="Sprite2D" parent="Anchor"]
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("2_4byq1")

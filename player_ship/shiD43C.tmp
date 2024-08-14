@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://oqw6cdjy2ban"]
+[gd_scene load_steps=55 format=3 uid="uid://oqw6cdjy2ban"]
 
 [ext_resource type="Script" path="res://player_ship/ship.gd" id="1_yu8h1"]
 [ext_resource type="Script" path="res://components/move_component.gd" id="2_h6u4s"]
@@ -30,7 +30,6 @@
 [ext_resource type="Script" path="res://player_ship/SkillBar.gd" id="26_0nvgq"]
 [ext_resource type="AudioStream" uid="uid://bu2et5i7r6mk7" path="res://sounds/hit_sound.wav" id="26_r1tb4"]
 [ext_resource type="PackedScene" uid="uid://c0fw4mi0ordal" path="res://weapons/spells/spell_button.tscn" id="26_vndjb"]
-[ext_resource type="FontFile" uid="uid://q2hl2ajuwf6f" path="res://fonts/kenney_mini_square.ttf" id="31_guesd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_curak"]
 atlas = ExtResource("6_upsw6")
@@ -865,55 +864,27 @@ transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 
 [node name="SkillBar" type="HBoxContainer" parent="UI"]
 unique_name_in_owner = true
-offset_right = 216.0
-offset_bottom = 40.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 220.0
+offset_bottom = 52.0
+size_flags_horizontal = 3
 script = ExtResource("26_0nvgq")
 
 [node name="SpellButton" parent="UI/SkillBar" instance=ExtResource("26_vndjb")]
-visible = false
 layout_mode = 2
 
 [node name="SpellButton2" parent="UI/SkillBar" instance=ExtResource("26_vndjb")]
-visible = false
 layout_mode = 2
 
 [node name="SpellButton3" parent="UI/SkillBar" instance=ExtResource("26_vndjb")]
-visible = false
 layout_mode = 2
 
 [node name="SpellButton4" parent="UI/SkillBar" instance=ExtResource("26_vndjb")]
-visible = false
 layout_mode = 2
 
 [node name="SpellButton5" parent="UI/SkillBar" instance=ExtResource("26_vndjb")]
-visible = false
 layout_mode = 2
-
-[node name="Control" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 886.0
-offset_top = -4.0
-offset_right = 926.0
-offset_bottom = 36.0
-
-[node name="HP_Label" type="Label" parent="UI/Control"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = -16.0
-offset_top = 8.0
-offset_right = 23.0
-offset_bottom = 43.0
-theme_override_fonts/font = ExtResource("31_guesd")
-theme_override_font_sizes/font_size = 28
-
-[node name="TextureRect" type="TextureRect" parent="UI/Control"]
-layout_mode = 0
-offset_left = 18.0
-offset_top = -6.0
-offset_right = 82.0
-offset_bottom = 58.0
-texture = ExtResource("3_0otc4")
 
 [connection signal="area_entered" from="PowerUpsDetector" to="." method="_on_power_ups_detector_area_entered"]
 [connection signal="area_entered" from="EnemyDetectorAnchor/EnemyDetector" to="." method="_on_enemy_detector_area_entered"]

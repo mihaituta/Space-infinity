@@ -12,11 +12,7 @@ script = ExtResource("1_romf4")
 game_stats = ExtResource("2_cqqct")
 
 [node name="Ship" parent="." instance=ExtResource("1_12sv3")]
-position = Vector2(240, 240)
-
-[node name="CollisionShape2D" parent="Ship/Node/EnemyDetector" index="0"]
-position = Vector2(240, 84)
-debug_color = Color(0.72549, 0.454902, 0.372549, 0.278431)
+position = Vector2(253, 256)
 
 [node name="SpaceBackground" parent="." instance=ExtResource("2_0vli1")]
 
